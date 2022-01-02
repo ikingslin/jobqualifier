@@ -1,0 +1,12 @@
+#logo
+{
+    max-width: 50px;
+    max-height: 50px;
+    margin-left: 10%;
+    
+}
+#companytitle{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    margin-left: 12%;
+}
