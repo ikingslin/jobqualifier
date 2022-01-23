@@ -11,6 +11,8 @@
     $query = "SELECT `AdminName`, `Password` FROM admin WHERE AdminName='$aname' AND Password='$apass';";
     $result = mysqli_query($conn,$query);
 
+
+    Check 
     if($result==false)    
     {
         echo '<script type="text/javascript">','validate(0);','</script>';
