@@ -12,7 +12,7 @@
     $result = mysqli_query($conn,$query);
 
 
-    Check 
+    
     if($result==false)    
     {
         echo '<script type="text/javascript">','validate(0);','</script>';
