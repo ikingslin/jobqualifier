@@ -10,8 +10,11 @@
     
     $query = "SELECT `AdminName`, `Password` FROM admin WHERE AdminName='$aname' AND Password='$apass';";
     $result = mysqli_query($conn,$query);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 95175b78be0916c27834a2a69e171c4bef84ba69
     
     if($result==false)    
     {
