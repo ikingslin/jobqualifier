@@ -4,25 +4,35 @@
     {
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
-    if(isset($_GET['check'])){
-    $aname = $_POST['adminname'];
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $aname = $_POST['loginname'];
     $apass = $_POST['apass'];
-    
-    $query = "SELECT `AdminName`, `Password` FROM admin WHERE AdminName='$aname' AND Password='$apass';";
-    $result = mysqli_query($conn,$query);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 95175b78be0916c27834a2a69e171c4bef84ba69
-    
-    if($result==false)    
+    $mode = $_POST['lmode'];
+    if($mode=="admin")
     {
-        echo '<script type="text/javascript">','validate(0);','</script>';
+        $query = "SELECT `AdminName`, `Password` FROM admin WHERE AdminName='$aname' AND Password='$apass';";
+    }
+    else if($mode == "candidate")
+    {
+        $query = "SELECT `id`,`password` FROM candidate WHERE id='$aname' AND password='$apass'";
+    }
+    $result = mysqli_query($conn,$query);
+    
+    if(mysqli_num_rows($result)==0)
+    {
+        echo '<script>alert("Invalid Credentials")</script>';
     }
     else if(mysqli_num_rows($result) > 0)
     {
+        if($mode=="admin")
+    {
         header("Location:dashboard.php");
+    }
+    else if($mode == "candidate")
+    {
+        header("Location:candidatedashboard.php");
+    }
+        
     }
     mysqli_close($conn);
     }
@@ -40,20 +50,27 @@
     <script src="assets/admin.js"></script>
     <link rel="stylesheet" href="assets/index.css">
 </head>
+
 <body>
     <header class="d-flex justify-content-left align-items-center py-2 border-bottom bg-light">
         <img src="assets/images/logo.png" alt="No Image" id="logo" style="margin-left: 2%;">
         <h4 class="fs-4" id="companytitle" style="margin-left: 2%;">JobQualifier</h4>
     </header><br>
     <div class="container" style="max-width: fit-content;">
-        <form action="admin.php?check=true" method="post">
+        <form action="" method="post">
             <div class="form-group">
-                <label for="aname">Admin Name</label>
-                <input type="text" name="adminname" id="aname" class="form-control" required/>
+                <label for="name">Name</label>
+                <input type="text" name="loginname" id="name" class="form-control" required/>
             </div><br>
             <div class="form-group">
                 <label for="pass">Password</label>
                 <input type="password" name="apass" id="pass" class="form-control" required/>
+            </div><br>
+            <div class="form-group">
+                <label for="mode">Candidate</label>
+                <input type="radio" name="lmode" id="mode" value = "candidate" checked />
+                <label for="mode">Admin</label>
+                <input type="radio" name="lmode" id="amode" value = "admin" />
             </div><br>
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-success">
