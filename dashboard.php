@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +21,13 @@
         </div>
         
         <ul class="nav nav-pills align-items-center" style="margin-right:2%">
-            <li class="nav-item">
-                <a href="index.html">Logout</a>
+            <li class="nav-item" style="margin-right:15px;">
+                <?php echo $_SESSION['login_user'];?>
             </li>
+            <li class="nav-item">
+                <a href="index.php">Logout</a>
+            </li>
+            
         </ul>
     </header><br>
     <div class="d-flex" style = "height:85vh;max-height:100%;min-height:fitcontent">
@@ -29,11 +36,11 @@
                 <li class="list-group-item"><a href="home.html" target="maincontent">Home</a></li>
                 <li class="list-group-item"><a href="#" target="maincontent">Drive Settings</a></li>
                 <li class="list-group-item"><a href="#" target="maincontent">Candidate Filtering</a></li>
-                <li class="list-group-item"><a href="index.html">Logout</a></li>
+                <li class="list-group-item"><a href="index.php">Logout</a></li>
             </ul>
         </div>
         <div class="container-fluid embed-responsive">
-        <iframe src="home.html" name="maincontent" class="embed-responsive-item col-sm-12" style="height:85vh;"></iframe>
+        <iframe src="home.html" name="maincontent" scrolling="no" class="embed-responsive-item col-sm-12" style="height:85vh;"></iframe>
 
         </div>
     </div>

@@ -4,6 +4,7 @@
     {
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
+    session_start();
     if($_SERVER["REQUEST_METHOD"] == "POST"){
     $aname = $_POST['loginname'];
     $apass = $_POST['apass'];
@@ -24,12 +25,14 @@
     }
     else if(mysqli_num_rows($result) > 0)
     {
-        if($mode=="admin")
+    if($mode=="admin")
     {
+        $_SESSION['login_user'] = $aname;
         header("Location:dashboard.php");
     }
     else if($mode == "candidate")
     {
+        $_SESSION['login_user'] = $aname;
         header("Location:candidatedashboard.php");
     }
         
@@ -67,13 +70,16 @@
                 <input type="password" name="apass" id="pass" class="form-control" required/>
             </div><br>
             <div class="form-group">
-                <label for="mode">Candidate</label>
                 <input type="radio" name="lmode" id="mode" value = "candidate" checked />
-                <label for="mode">Admin</label>
+                <label for="mode">Candidate</label>
                 <input type="radio" name="lmode" id="amode" value = "admin" />
+                <label for="mode">Admin</label>
             </div><br>
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-success">
+                <a href="signup.php">
+                    <input type="button" value="SignUp"  class="btn btn-success">
+                </a>
                 <span id="error"></span>
             </div>
         </form>

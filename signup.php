@@ -46,7 +46,7 @@
             else
             {
                 echo '<script>alert("Account created successfully")</script>';
-                header("Location:admin.php");
+                header("Location:index.php");
             }
         }
         else
