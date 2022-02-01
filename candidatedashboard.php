@@ -40,7 +40,7 @@ session_start();
                 <ul class="list-group" style = "text-decoration:none;">
                     <li class="list-group-item"><a href="#" target="maincontent">Home</a></li>
                     <li class="list-group-item"><a href="#" target="maincontent">Profile Edit</a></li>
-                    <li class="list-group-item"><a href="#" target="maincontent">Application</a></li>
+                    <li class="list-group-item"><a href="candidate/selectapplication.php" target="maincontent">Application</a></li>
                     <li class="list-group-item"><a href="index.php">Logout</a></li>
                 </ul>
             </div>
