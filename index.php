@@ -6,16 +6,16 @@
     }
     session_start();
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $aname = $_POST['loginname'];
-    $apass = $_POST['apass'];
+    $name = $_POST['loginname'];
+    $pass = $_POST['apass'];
     $mode = $_POST['lmode'];
     if($mode=="admin")
     {
-        $query = "SELECT `AdminName`, `Password` FROM admin WHERE AdminName='$aname' AND Password='$apass';";
+        $query = "SELECT `email`, `password` FROM admin WHERE email='$name' AND password='$pass';";
     }
     else if($mode == "candidate")
     {
-        $query = "SELECT `id`,`password` FROM candidate WHERE id='$aname' AND password='$apass'";
+        $query = "SELECT `email`,`password`,`name` FROM candidate WHERE email='$name' AND password='$pass'";
     }
     $result = mysqli_query($conn,$query);
     
@@ -27,12 +27,16 @@
     {
     if($mode=="admin")
     {
-        $_SESSION['login_user'] = $aname;
+        $_SESSION['login_user'] = $name;
         header("Location:dashboard.php");
     }
     else if($mode == "candidate")
     {
-        $_SESSION['login_user'] = $aname;
+        while($row = mysqli_fetch_array($result)) {
+            $_SESSION['login_name'] = $row["name"];
+        }
+        
+        $_SESSION['login_user'] = $name;
         header("Location:candidatedashboard.php");
     }
         
@@ -43,48 +47,89 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/admin.js"></script>
-    <link rel="stylesheet" href="assets/index.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Login</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/admin.js"></script>
+        <link rel="stylesheet" href="assets/index.css">
+    </head>
+    <style>
+        body, html 
+        {
+            height: 100%;
+        }
+        * {
+           box-sizing: border-box;
+        }
 
-<body>
-    <header class="d-flex justify-content-left align-items-center py-2 border-bottom bg-light">
-        <img src="assets/images/logo.png" alt="No Image" id="logo" style="margin-left: 2%;">
-        <h4 class="fs-4" id="companytitle" style="margin-left: 2%;">JobQualifier</h4>
-    </header><br>
-    <div class="container" style="max-width: fit-content;">
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="loginname" id="name" class="form-control" required/>
-            </div><br>
-            <div class="form-group">
-                <label for="pass">Password</label>
-                <input type="password" name="apass" id="pass" class="form-control" required/>
-            </div><br>
-            <div class="form-group">
-                <input type="radio" name="lmode" id="mode" value = "candidate" checked />
-                <label for="mode">Candidate</label>
-                <input type="radio" name="lmode" id="amode" value = "admin" />
-                <label for="mode">Admin</label>
-            </div><br>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-success">
-                <a href="signup.php">
-                    <input type="button" value="SignUp"  class="btn btn-success">
-                </a>
-                <span id="error"></span>
+        .bg-img 
+        {
+            background-image: url("assets/images/bg.jpg");
+            min-height: 700px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .container 
+        {
+            position: absolute;
+            margin: 50px;
+            right: 500px;
+            width: 25%;
+            height: 500px;
+            padding: 40px;
+            background-color: white;
+        }
+
+        .btn
+        {
+            background-color: #1E90FF;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+    <body>
+        <header class="d-flex justify-content-left align-items-center py-2 border-bottom bg-light">
+            <img src="assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded-circle">
+            <h5 class="fs-2" id="companytitle" style="margin-left: 2%;">JobQualifier</h5>
+        </header>
+        <div class="bg-img">
+            <div class="container">
+                <h1>LOGIN</h1><br/>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="name">Email</label>
+                        <input type="email" name="loginname" id="name" class="form-control" required/>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="pass">Password</label>
+                        <input type="password" name="apass" id="pass" class="form-control" required/>
+                    </div><br>
+                    <div class="form-group">
+                        <input type="radio" name="lmode" id="mode" value = "candidate" checked />
+                        <label for="mode">Candidate</label>
+                        <input type="radio" name="lmode" id="amode" value = "admin" />
+                        <label for="mode">Admin</label>
+                    </div><br>
+                    <div class="form-group">
+                        <p><input type="submit" value="Login" class="btn btn-dark"></p>
+                        <a href="signup.php">
+                            <input type="button" value="SignUp"  class="btn btn-dark">
+                        </a>
+                        <span id="error"></span>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    
-</body>
+        </div>
+    </body>
 </html>
 
