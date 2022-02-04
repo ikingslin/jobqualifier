@@ -71,18 +71,18 @@
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php">
+                    <a href="../index.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
             </ul>
         </header>
         <div class="sidebar">
-            <a class="active" href="#home">Home</a>
-            <a href="#news">Profile Edit</a>
-            <a href="#contact">Apply for job</a>
+            <a class="active" href="../candidatedashboard.php">Home</a>
+            <a href="editProfile.php">Profile Edit</a>
+            <a href="selectapplication.php">Apply for job</a>
             <a href="#about">Status of Application</a>
-            <a href="#about">Logout</a>
+            <a href="../index.php">Logout</a>
         </div>
         <div class="content">
             <div class="container">

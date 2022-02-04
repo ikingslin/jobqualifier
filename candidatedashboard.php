@@ -33,36 +33,14 @@ session_abort();
             </ul>
         </header>
         <div class="sidebar">
-            <a class="active" href="#home">Home</a>
+            <a class="candidatedashboard.php" href="#home">Home</a>
             <a href="candidate/editProfile.php">Profile Edit</a>
-            <a href="#contact">Apply for job</a>
+            <a href="candidate/editProfile.php">Apply for job</a>
             <a href="#about">Status of Application</a>
-            <a href="#about">Logout</a>
+            <a href="index.php">Logout</a>
         </div>
-
-        <!-- Page content -->
         <div class="content">
-        ..
-        </div>
-        <!--<div class="container-fluid">
-            <div class="d-flex">
-                <div class="container-fluid border-end" style ="max-width:fit-content">
-                    <ul class="list-group" style = "text-decoration:none;">
-                        <li class="list-group-item"><a href="#">Home</a></li>
-                        <li class="list-group-item"><a href="candidate/editProfile.php" >Profile Edit</a></li>
-                        <li class="list-group-item"><a href="candidate/selectapplication.php" >Application</a></li>
-                        <li class="list-group-item"><a href="index.php">Logout</a></li>
-                    </ul>
-                </div>
-                <div class="container-fluid embed-responsive" style = "height:100%;">
-                    <div class = "wrapper" style = "height:100vh;"> -->
-                        <!-- <iframe id="content" name="maincontent" frameborder="0" width="100%" height="100%" class="responsive-iframe">
-
-                        </iframe> -->
-                        <!-- <iframe src="https://psgtech.edu/" scrolling="no" id="content"  name="maincontent" class="responsive-iframe"  style="width:100%;height:inherit;"></iframe> -->
-                    <!-- </div>
-                </div>
-            </div>
+        
         </div>
     </body>
-</html> -->  
+</html>
