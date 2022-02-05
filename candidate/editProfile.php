@@ -63,7 +63,7 @@
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="../assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
-                <h5 class="fs-2" id="companytitle" style="margin-left: 2%;">JobQualifier</h5>
+                <h5 class="fs-2 companytitle" style="margin-left: 2%;">JobQualifier</h5>
             </div>
             
             <ul class="nav nav-pills align-items-center" style="margin-right:2%">
@@ -78,8 +78,8 @@
             </ul>
         </header>
         <div class="sidebar">
-            <a class="active" href="../candidatedashboard.php">Home</a>
-            <a href="editProfile.php">Profile Edit</a>
+            <a href="../candidatedashboard.php">Home</a>
+            <a class="active" href="editProfile.php">Profile Edit</a>
             <a href="selectapplication.php">Apply for job</a>
             <a href="#about">Status of Application</a>
             <a href="../index.php">Logout</a>

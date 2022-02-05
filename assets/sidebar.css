@@ -24,8 +24,9 @@ body
 
 .sidebar a.active
 {
-    background-color: #1E90FF;
+    background-color: #0dcaf0 !important;
     color: white;
+    font-weight: bold;
 }
 
 .sidebar a:hover:not(.active) 

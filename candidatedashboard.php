@@ -18,7 +18,7 @@ session_abort();
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
-                <h5 class="fs-2" id="companytitle" style="margin-left: 2%;">JobQualifier</h5>
+                <h5 class="fs-2 companytitle" style="margin-left: 2%;">JobQualifier</h5>
             </div>
             
             <ul class="nav nav-pills align-items-center" style="margin-right:2%">
@@ -33,14 +33,21 @@ session_abort();
             </ul>
         </header>
         <div class="sidebar">
-            <a class="candidatedashboard.php" href="#home">Home</a>
+            <a class="active" href="candidatedashboard.php">Home</a>
             <a href="candidate/editProfile.php">Profile Edit</a>
             <a href="candidate/editProfile.php">Apply for job</a>
             <a href="#about">Status of Application</a>
             <a href="index.php">Logout</a>
         </div>
         <div class="content">
-        
+            <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center" style="height:70vh">
+                <div class="container text-center">
+                    <h1 class="display-1 text-info companytitle"><b>JOB QUALIFIER</b></h1>
+                    <p class="display-4 d-none d-sm-block">Welcome <?php echo $_SESSION['login_name'];?></p>
+                    <p class="lead">Your portal to opportunities</p>
+                    <p class="lead">We make it easier to hire and get hired</p>
+                </div>
+            </section>
         </div>
     </body>
 </html>
