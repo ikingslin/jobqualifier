@@ -23,7 +23,7 @@ session_abort();
             
             <ul class="nav nav-pills align-items-center" style="margin-right:2%">
                 <li class="nav-item" style="margin-right:15px;">
-                    <?php echo $_SESSION['login_name'];?>
+                    Admin
                 </li>
                 <li class="nav-item">
                     <a href="index.php">
@@ -34,7 +34,7 @@ session_abort();
         </header>
         <div class="sidebar">
             <a class="active" href="home.php">Home</a>
-            <a href="">Drive Settings</a>
+            <a href="">Adding Roles</a>
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
