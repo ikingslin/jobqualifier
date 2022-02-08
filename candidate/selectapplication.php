@@ -8,6 +8,11 @@
   {
     die("Connection to DB failed with : ".mysqli_connect_error());
   }
+  $roles = 'select `Name`,`roleid`,`qualification` from roles where last_date > sysdate() ;';
+  $result = mysqli_query($conn,$roles);
+  
+
+  mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +25,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="../assets/index.css">
         <link rel="stylesheet" href="../assets/sidebar.css">
+        <script src="../assets/application.js"></script>
     </head>
     <body>
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
@@ -41,21 +47,32 @@
         </header>
         <div class="sidebar">
             <a href="../candidatedashboard.php">Home</a>
-            <a class="active" href="editProfile.php">Profile Edit</a>
-            <a href="selectapplication.php">Apply for job</a>
+            <a href="editProfile.php">Profile Edit</a>
+            <a class="active"href="selectapplication.php">Apply for job</a>
             <a href="#about">Status of Application</a>
             <a href="../index.php">Logout</a>
         </div>
 
         <div class="content">
-          <div class="container">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-              Available Applications
-            </button>
-            <ul class="dropdown-menu" name = "available">
-              <li><a class="dropdown-item" href="#">Link 1</a></li>
+          <div class="container"><br><br>
+          Available Applications
+            <ul class="list-group" name = "available" id = "dlist">
+              <?php 
+                if ($result->num_rows > 0) {
+                  while($row = $result->fetch_assoc()) {
+                    echo "<li class = \"list-group-item\"><a"." href="."selectapplication.php?roleid=".$row['roleid']."\">".$row['Name']."</a>"."\t\tQualification:".$row['qualification']."</li>";
+                  }
+                } else {
+                  echo "";
+                }
+              ?>
             </ul>
+            <div id="details">
+              
+            </div>
           </div>
 </div>
+<script src="../assets/application.js"></script>
 </body>
+
 </html>

@@ -1,11 +1,18 @@
 <?php
-session_start();
-session_abort();
+  if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  }
+  $conn = mysqli_connect("localhost","root","","jobqualifier");
+  if(!$conn)
+  {
+    die("Connection to DB failed with : ".mysqli_connect_error());
+  }
+  
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Dashboard</title>
@@ -13,9 +20,10 @@ session_abort();
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="assets/index.css">
         <link rel="stylesheet" href="assets/sidebar.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </head>
     <body>
-        <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
+    <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
                 <h5 class="fs-2 companytitle" style="margin-left: 2%;">JobQualifier</h5>
@@ -33,21 +41,24 @@ session_abort();
             </ul>
         </header>
         <div class="sidebar">
-            <a class="active" href="candidatedashboard.php">Home</a>
-            <a href="candidate/editProfile.php">Profile Edit</a>
-            <a href="candidate/selectapplication.php">Apply for job</a>
-            <a href="#about">Status of Application</a>
+            <a class="active" href="home.php">Home</a>
+            <a href="">Drive Settings</a>
+            <a href="">Question Update</a>
+            <a href="#list">Candidate Grading</a>
+            <a href="#filter">Candidate Filtering</a>
             <a href="index.php">Logout</a>
         </div>
-        <div class="content">
-            <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center" style="height:70vh">
-                <div class="container text-center">
-                    <h1 class="display-1 text-info companytitle"><b>JOB QUALIFIER</b></h1>
-                    <p class="display-4 d-none d-sm-block">Welcome <?php echo $_SESSION['login_name'];?></p>
-                    <p class="lead">Your portal to opportunities</p>
-                    <p class="lead">We make it easier to hire and get hired</p>
-                </div>
-            </section>
+        
+    <div class="content">
+        <div class="container">
+        <div class="progress">
+            <div class="progress-bar" style="width:50%">2</div>
+        </div><br>
+        <span class="fs-3" id="ques">Question</span><br>
+        <span class="fs-5" id="cquestion"></span><br>
+        <input type="file" accept="image/*;capture=camera"><br><br>
+        <button class="btn btn-success">Upload</button>
         </div>
-    </body>
+    </div>
+</body>
 </html>
