@@ -6,8 +6,8 @@
     }
     session_start();
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $name = $_POST['loginname'];
-    $pass = $_POST['apass'];
+    $name = mysqli_real_escape_string($conn,$_POST['loginname']);
+    $pass = mysqli_real_escape_string($conn,$_POST['apass']); 
     $mode = $_POST['lmode'];
     if($mode=="admin")
     {

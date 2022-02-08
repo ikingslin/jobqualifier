@@ -1,4 +1,5 @@
 <?php 
+  include('../cauth.php');
   if(!isset($_SESSION)) 
   { 
     session_start(); 
@@ -39,7 +40,7 @@
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="../index.php">
+                    <a href="../logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -50,7 +51,7 @@
             <a href="editProfile.php">Profile Edit</a>
             <a class="active"href="selectapplication.php">Apply for job</a>
             <a href="#about">Status of Application</a>
-            <a href="../index.php">Logout</a>
+            <a href="../logout.php">Logout</a>
         </div>
 
         <div class="content">
@@ -60,7 +61,7 @@
               <?php 
                 if ($result->num_rows > 0) {
                   while($row = $result->fetch_assoc()) {
-                    echo "<li class = \"list-group-item\"><a"." href="."selectapplication.php?roleid=".$row['roleid']."\">".$row['Name']."</a>"."\t\tQualification:".$row['qualification']."</li>";
+                    echo "<li class = \"list-group-item\"><a"." href="."terms.php?roleid=".$row['roleid'].">".$row['Name']."</a>"."\t\tQualification:".$row['qualification']."</li>";
                   }
                 } else {
                   echo "";
@@ -72,7 +73,6 @@
             </div>
           </div>
 </div>
-<script src="../assets/application.js"></script>
 </body>
 
 </html>

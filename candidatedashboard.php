@@ -1,5 +1,6 @@
 <?php
-session_start();
+include('cauth.php');
+
 session_abort();
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ session_abort();
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php">
+                    <a href="logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -37,7 +38,7 @@ session_abort();
             <a href="candidate/editProfile.php">Profile Edit</a>
             <a href="candidate/selectapplication.php">Apply for job</a>
             <a href="#about">Status of Application</a>
-            <a href="index.php">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
         <div class="content">
             <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center" style="height:70vh">

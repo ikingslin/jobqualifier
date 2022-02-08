@@ -1,4 +1,5 @@
 <?php
+  include('aauth.php');
   if(!isset($_SESSION)) 
   { 
     session_start(); 
@@ -45,10 +46,10 @@
             
             <ul class="nav nav-pills align-items-center" style="margin-right:2%">
                 <li class="nav-item" style="margin-right:15px;">
-                    <?php echo $_SESSION['login_name'];?>
+                    <?php echo $_SESSION['login_user'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php">
+                    <a href="logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -60,7 +61,7 @@
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
-            <a href="index.php">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
         
     <div class="content">

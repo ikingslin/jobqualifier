@@ -1,5 +1,6 @@
 <?php
-session_start();
+include('aauth.php');
+
 session_abort();
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ session_abort();
                     Admin
                 </li>
                 <li class="nav-item">
-                    <a href="index.php">
+                    <a href="logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -38,7 +39,7 @@ session_abort();
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
-            <a href="index.php">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
            
 </body>

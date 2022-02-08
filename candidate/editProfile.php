@@ -1,4 +1,5 @@
 <?php
+    include('../cauth.php');
     if(!isset($_SESSION)) 
     { 
         session_start(); 
@@ -71,7 +72,7 @@
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="../index.php">
+                    <a href="../logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -82,7 +83,7 @@
             <a class="active" href="editProfile.php">Profile Edit</a>
             <a href="selectapplication.php">Apply for job</a>
             <a href="#about">Status of Application</a>
-            <a href="../index.php">Logout</a>
+            <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
             <div class="container">
