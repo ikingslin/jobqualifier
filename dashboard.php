@@ -35,7 +35,7 @@ session_abort();
         </header>
         <div class="sidebar">
             <a class="active" href="home.php">Home</a>
-            <a href="">Adding Roles</a>
+            <a href="admin/roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
