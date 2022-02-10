@@ -56,7 +56,7 @@
                     Admin
                 </li>
                 <li class="nav-item">
-                    <a href="logout.php">
+                    <a href="../logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -68,47 +68,49 @@
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
-            <a href="logout.php">Logout</a>
+            <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
             <div class="container">
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <label for="roleid">Role ID</label>
-                        <input type="text" name="roleid" id="roleid" pattern="R[0-9]{5)" class="form-control form-control-lg" required/>
+                <form action="roles.php" method="post">
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="roleid">Role ID</label>
+                            <input type="text" name="roleid" id="roleid" pattern="R[0-9]{5)" class="form-control form-control-lg" required/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="role">Role</label>
+                            <input type="text" name="role" id="role" class="form-control form-control-lg" required/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="require">Requirements</label>
+                            <input type="text" name="require" id="require" class="form-control form-control-lg" required/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="qualify">Qualification</label>
+                            <input type="text" name="qualify" id="qualify" class="form-control form-control-lg" required/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="role">Last Date to Apply</label>
+                            <input type="date" name="ldate" id="ldate" class="form-control form-control-lg" required/>
+                        </div>
+                    </div><br>
+                    <div class="form-group">
+                        <center>
+                            <input type="submit" value="Add" name="submit" class="btn btn-primary">
+                            <input type="reset" value="Reset" class="btn btn-primary">
+                        </center>
                     </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label for="role">Role</label>
-                        <input type="text" name="role" id="role" class="form-control form-control-lg" required/>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label for="require">Requirements</label>
-                        <input type="text" name="require" id="require" class="form-control form-control-lg" required/>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label for="qualify">Qualification</label>
-                        <input type="text" name="qualify" id="qualify" class="form-control form-control-lg" required/>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label for="role">Last Date to Apply</label>
-                        <input type="date" name="ldate" id="ldate" class="form-control form-control-lg" required/>
-                    </div>
-                </div><br>
-                <div class="form-group">
-                    <center>
-                        <input type="submit" value="Add" name="submit" class="btn btn-primary">
-                        <input type="reset" value="Reset" class="btn btn-primary">
-                    </center>
-                </div>
+                </form>
             </div>
         </div>          
     </body>
