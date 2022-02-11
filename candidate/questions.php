@@ -1,5 +1,5 @@
 <?php
-    include('../cauth.php');
+  include('../cauth.php');
   if(!isset($_SESSION)) 
   { 
     session_start(); 
@@ -22,7 +22,17 @@
         <link rel="stylesheet" href="../assets/index.css">
         <link rel="stylesheet" href="../assets/sidebar.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
+    <style>
+        video {
+        	background-color: black;
+	        display: block;
+	        margin: 6px auto;
+	        width: 420px;
+	        height: 240px;
+}
+    </style>
     <body>
     <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
@@ -35,7 +45,7 @@
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="logout.php">
+                    <a href="../logout.php">
                         <input type="button" value="Logout"  class="btn btn-primary">
                     </a>
                 </li>
@@ -50,8 +60,12 @@
         </div><br>
         <span class="fs-3" id="ques">Question</span><br>
         <span class="fs-5" id="cquestion"></span><br>
-        <input type="file" accept="image/*;capture=camera"><br><br>
-        <button class="btn btn-success">Upload</button>
+        <video autoplay id="web-cam-container"
+			style="background-color: black;">
+			Your browser doesn't support
+			the video tag
+		</video>
+        <script src = "../assets/canrecord.js"></script>
         </div>
     </div>
 </body>
