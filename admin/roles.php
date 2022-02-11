@@ -77,7 +77,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="roleid">Role ID</label>
-                            <input type="text" name="roleid" id="roleid" pattern="R[0-9]{5)" class="form-control form-control-lg" required/>
+                            <input type="text" name="roleid" id="roleid" pattern="R[0-9]{5}" class="form-control form-control-lg" required/>
                         </div>
                     </div><br>
                     <div class="row">

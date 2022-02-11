@@ -69,7 +69,7 @@
         .bg-img 
         {
             background-image: url("assets/images/bg.jpg");
-            min-height: 700px;
+            min-height: 91vmin;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
