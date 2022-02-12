@@ -13,6 +13,7 @@
   if(isset($_POST['role']) && !isset($_SESSION['appid']))
   {
     $_SESSION['roleid'] = $_POST['role'];
+    echo $_SESSION['roleid'];
     $sql = " select * from application;";
     $result=mysqli_query($conn,$sql);
     if($result)
@@ -54,7 +55,6 @@
         }
   }
   $candidate = "SELECT id FROM candidate WHERE email = '".$_SESSION['login_user']."';";
-  echo $_SESSION['login_user'];
   $cresult = mysqli_query($conn,$candidate);
   $cid = "";
   if($cresult){
@@ -62,13 +62,11 @@
         while($row = $cresult->fetch_assoc()) {
             $cid = $row['id'];
             $_SESSION['cid'] = $cid;
-            echo "CID:".$cid;          
         }
     }
   }
   
    $roleid = $_SESSION['roleid'];
-   echo "ROLEID:".$roleid;
   $sql = "SELECT * from question where role_id = '".$roleid."' AND questionid NOT IN (SELECT questionid from answers WHERE cid = '".$cid."');";
   $qid = "";
   $question = "";
@@ -84,7 +82,6 @@
         header("Location:../candidatedashboard.php");
     }
   }
-  echo "QID:".$qid;
 
 ?>
 <html>
@@ -109,7 +106,7 @@
 	        height: 240px;
 }
     </style>
-    <body onload="timer(5)">
+    <body onload="timer(15)">
     <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="../assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
@@ -121,7 +118,7 @@
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                <span class="fs-5" id="counter"></span>
+                
                 </li>
             </ul>
         </header>
@@ -129,9 +126,9 @@
         
     <div class="content">
         <div class="container">
-        <div class="progress">
+        <!--<div class="progress">
             <div class="progress-bar" style="width:50%">2</div>
-        </div><br>
+        </div><br>-->
         <span class="fs-3" id="ques">Question</span><br>
         <span class="fs-5" id="cquestion"><?php echo $question; ?></span><br>
         <video autoplay id="web-cam-container"
@@ -139,6 +136,9 @@
 			Your browser doesn't support
 			the video tag
 		</video>
+        
+        <center><div class="btn btn-success" id="status">The Recording will begin in<div class="btn btn-success" id="counter"></div></div></center>
+        
         
         <script src = "../assets/canrecord.js"></script>
         <script>

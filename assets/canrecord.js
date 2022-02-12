@@ -14,9 +14,12 @@ function timer(timereq)
 	var downloadTimer = setInterval(function(){
 	if(timeleft <= 0){
     clearInterval(downloadTimer);
-	if(timereq==5)
+	if(timereq==15)
 	{
 	startRecording();
+	document.getElementById('counter').className = "btn btn-danger";
+	document.getElementById('status').className = "Recording";
+	document.getElementById('status').className = "btn btn-danger";
 	}
 	else{
 	stopRecording();
@@ -36,7 +39,7 @@ function startRecording() {
 		mediaRecorder.ondataavailable = (e) => {
 			chunks.push(e.data);
 		};
-		timer(10);
+		timer(60);
 		mediaRecorder.onstop = () => {
 			const blob = new Blob(
 				chunks, {
@@ -60,8 +63,8 @@ function upload(blob)
 {
 	var fd = new FormData();
 	fd.append('videofile', blob);
-	
     fd.append('qid', qid);
+	
 	$.ajax({
 		url: 'vidupload.php',
 		type: 'POST',
@@ -70,6 +73,7 @@ function upload(blob)
 		contentType: false
 	}).done(function(datum) {
 		console.log(datum);
+		window.location.href="http://localhost:8000/jobqualifier/candidate/questions.php";
 	});
 	
 }
