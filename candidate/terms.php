@@ -71,7 +71,7 @@
             ?>
             <b class="fs-3">Read before proceeding:</b><br>
             <p>The Candidate will have 15 seconds to read and preapre an answer for the given question.</p>
-            <p>The Answers must be for 60 seconds or 1 minute duration.</p>
+            <p>The Answers must be for 60 seconds duration.</p>
             <p>The portal will proceed to the next question immediately after recording the response.</p>
             <b class="fs-3">Terms and Conditions:</b><br>
             <p>I understand that all employment offers are contingent upon the results of employment and educational background checks.</p>
