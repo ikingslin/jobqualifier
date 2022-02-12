@@ -1,7 +1,29 @@
 <?php
 include('aauth.php');
-
-session_abort();
+if(!isset($_SESSION)) 
+  { 
+    session_start(); 
+  }
+  $conn = mysqli_connect("localhost","root","","jobqualifier");
+  if(!$conn)
+  {
+    die("Connection to DB failed with : ".mysqli_connect_error());
+  }
+  $roles = 'SELECT `Name`,COUNT(roles.roleid) as rcount FROM roles RIGHT join application on roles.roleid = application.roleid group by roles.roleid;';
+  $result = mysqli_query($conn,$roles);
+  $rol = array();
+  $count = array();
+  $i=0;
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $rol[$i] = $row["Name"];
+      $count[$i] = $row["rcount"];
+      $i++;
+    }
+  } else {
+    echo "";
+  }
+  //mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +36,7 @@ session_abort();
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="assets/index.css">
         <link rel="stylesheet" href="assets/sidebar.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </head>
     <body>
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
@@ -34,13 +57,40 @@ session_abort();
             </ul>
         </header>
         <div class="sidebar">
-            <a class="active" href="home.php">Home</a>
+            <a class="active" href="dashboard.php">Home</a>
             <a href="admin/roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
             <a href="logout.php">Logout</a>
         </div>
-           
-</body>
+        <div class="content">
+            <div class="container">
+              <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+        </div>     
+    </body>
+    <script>
+        var xValues = <?php echo json_encode($rol); ?>;
+        var yValues = <?php echo json_encode($count); ?>;
+        var barColors = ["red", "green","blue","orange","brown"];
+        
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            title: {
+              display: true,
+              text: "Applicants"
+            }
+          }
+        });
+    </script>     
 </html>
