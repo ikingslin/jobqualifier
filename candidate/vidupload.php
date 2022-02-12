@@ -1,4 +1,9 @@
 <?php
+	include('../cauth.php');
+	if(!isset($_SESSION)) 
+	{ 
+	  session_start(); 
+	}
 	$conn = mysqli_connect("localhost","root","","jobqualifier");
 	if(!$conn)
 	{
@@ -6,10 +11,10 @@
 	}
 	
 	
-	$app = $_POST['appid'];
-    $can = $_POST['cid'];
+	$app = $_SESSION['appid'];
+    $can = $_SESSION['cid'];
     $qid = $_POST['qid'];
-	
+	echo "Q:".$_POST['qid'];
 	$vid = addslashes(file_get_contents($_FILES['videofile']['tmp_name']));
 	$sql = "INSERT INTO answers VALUES('".$app."','".$can."','".$qid."','".$vid."')";
 	

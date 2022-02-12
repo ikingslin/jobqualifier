@@ -63,9 +63,9 @@
                             echo "</span></center>";
                             echo "<b class=\"fs-4\">Qualification:</b><br>\t\t\t\t\t\t\t".$row['qualification']."<br><br>";
                             echo "<b class=\"fs-4\">Requirements:</b><br>\t\t\t\t\t\t\t".$row['requirement']."<br><br>";
-                                }
-                            }
-                            }  
+                        }
+                    }
+                }
                 mysqli_close($conn);
             ?>
             <b class="fs-3">Terms and Conditions:</b><br>
@@ -77,8 +77,10 @@
             <p>If hired, I agree to abide by all of the Company rules and regulations. I agree that in the event R/GA should employ me, my employment may be terminated at any time by either party for any reason or for no reason.</p>
             <input type="checkbox" name="cagreement" id="agreement" onchange="allows()"/> I agree<br><br>
 
-            
-            <button type="button" id = "capplication" class="btn btn-success" onclick="location.href = 'questions.php'">Apply</button>
+            <form action="questions.php" method="post">
+                <input type="hidden" name="role" value="<?= $rol?>" />
+                <input type="submit" id = "capplication" class="btn btn-success">Apply</button>
+            </form>
 
             </button>
             </div>

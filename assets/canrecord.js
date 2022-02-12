@@ -1,5 +1,6 @@
 const mediaSelector = "video";
 
+let qid = "";
 const webCamContainer = document.getElementById("web-cam-container");
 let selectedMedia = "vid";
 let chunks = [];
@@ -21,7 +22,7 @@ function timer(timereq)
 	stopRecording();
 	}
 	}
-	document.getElementById("demo").innerHTML = timereq - timeleft;
+	document.getElementById("counter").innerHTML = timereq - timeleft;
 	timeleft -= 1;
 }, 1000);
 }
@@ -55,14 +56,12 @@ function stopRecording() {
 		track.stop();
 	});
 }
-
 function upload(blob)
 {
 	var fd = new FormData();
 	fd.append('videofile', blob);
-	fd.append('appid', );
-    fd.append('cid', );
-    fd.append('qid', );
+	
+    fd.append('qid', qid);
 	$.ajax({
 		url: 'vidupload.php',
 		type: 'POST',
@@ -72,4 +71,5 @@ function upload(blob)
 	}).done(function(datum) {
 		console.log(datum);
 	});
+	
 }

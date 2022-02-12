@@ -9,7 +9,83 @@
   {
     die("Connection to DB failed with : ".mysqli_connect_error());
   }
+  $id = "";
+  if(isset($_POST['role']) && !isset($_SESSION['appid']))
+  {
+    $_SESSION['roleid'] = $_POST['role'];
+    $sql = " select * from application;";
+    $result=mysqli_query($conn,$sql);
+    if($result)
+    {
+    if(mysqli_num_rows($result)==0)
+    {
+        $id='A0001';
+    }
+    else
+    {
+        $sql="select application_id from application order by application_id desc limit 1";
+        $result=mysqli_query($conn,$sql);
+        $row=mysqli_fetch_row($result);
+        $id=$row[0];
+        $id++;
+    }
+    }
+
+    $chk = "select * from application where roleid='".$_SESSION['login_name']."';";
+    $result=mysqli_query($conn,$chk);
+        if(mysqli_num_rows($result)==0)
+        {
+            $sql = "insert into application values('$id','pending',curdate(),'".$_POST['role']."');";
+            $insert = mysqli_query($conn,$sql);
+            $_SESSION['appid'] = $id;
+            if(!$insert)
+            {
+                $_SESSION['appid'] = "";
+                $_SESSION['cid'] = "";
+                $_SESSION['roleid'] = "";
+                echo '<script>alert("Application failed!!")</script>';
+                header("Location:selectapplication.php");
+            }
+        }
+        else
+        {
+            echo '<script>alert("You already have applied for this post")</script>';
+            header("Location:selectapplication.php");
+        }
+  }
+  $candidate = "SELECT id FROM candidate WHERE email = '".$_SESSION['login_user']."';";
+  echo $_SESSION['login_user'];
+  $cresult = mysqli_query($conn,$candidate);
+  $cid = "";
+  if($cresult){
+    if ($cresult->num_rows > 0) {
+        while($row = $cresult->fetch_assoc()) {
+            $cid = $row['id'];
+            $_SESSION['cid'] = $cid;
+            echo "CID:".$cid;          
+        }
+    }
+  }
   
+   $roleid = $_SESSION['roleid'];
+   echo "ROLEID:".$roleid;
+  $sql = "SELECT * from question where role_id = '".$roleid."' AND questionid NOT IN (SELECT questionid from answers WHERE cid = '".$cid."');";
+  $qid = "";
+  $question = "";
+  $qresult = mysqli_query($conn,$sql);
+  if($qresult){
+    if ($qresult->num_rows > 0) {
+        while($row = $qresult->fetch_assoc()) {
+            $qid = $row['questionid'];
+            $question = $row['question'];
+        }
+    }
+    else{
+        header("Location:../candidatedashboard.php");
+    }
+  }
+  echo "QID:".$qid;
+
 ?>
 <html>
     <head>
@@ -33,7 +109,7 @@
 	        height: 240px;
 }
     </style>
-    <body>
+    <body onload="timer(5)">
     <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="../assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
@@ -45,9 +121,7 @@
                     <?php echo $_SESSION['login_name'];?>
                 </li>
                 <li class="nav-item">
-                    <a href="../logout.php">
-                        <input type="button" value="Logout"  class="btn btn-primary">
-                    </a>
+                <span class="fs-5" id="counter"></span>
                 </li>
             </ul>
         </header>
@@ -59,13 +133,17 @@
             <div class="progress-bar" style="width:50%">2</div>
         </div><br>
         <span class="fs-3" id="ques">Question</span><br>
-        <span class="fs-5" id="cquestion"></span><br>
+        <span class="fs-5" id="cquestion"><?php echo $question; ?></span><br>
         <video autoplay id="web-cam-container"
 			style="background-color: black;">
 			Your browser doesn't support
 			the video tag
 		</video>
+        
         <script src = "../assets/canrecord.js"></script>
+        <script>
+            qid="<?=$qid?>";
+        </script>
         </div>
     </div>
 </body>
