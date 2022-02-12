@@ -52,7 +52,7 @@
         </div>
 
         <div class="content">
-          <div class="container"><br><br>
+          <div class="container">
           
           <?php 
                 if($result){
