@@ -46,6 +46,7 @@ function startRecording() {
 					type: "video/mp4"
 				});
 			chunks = [];
+			console.log(blob);
 			upload(blob);
 		};
 		webCamContainer.srcObject = mediaStream;
