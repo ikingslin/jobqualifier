@@ -84,7 +84,7 @@
 
             <form action="questions.php" method="post">
                 <input type="hidden" name="role" value="<?= $rol?>" />
-                <input type="submit" id = "capplication" class="btn btn-success" value="Apply"></button>
+                <input type="submit" value="Apply" id = "capplication" class="btn btn-primary">
             </form>
 
             </button>

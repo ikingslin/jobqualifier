@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="../assets/index.css">
         <link rel="stylesheet" href="../assets/sidebar.css">
         <link rel="stylesheet" href="../assets/formlabel.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </head>
     <body>
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
@@ -64,7 +65,7 @@
             </ul>
         </header>
         <div class="sidebar">
-            <a href="../home.php">Home</a>
+            <a href="../dashboard.php">Home</a>
             <a class="active" href="roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a href="#list">Candidate Grading</a>
