@@ -23,7 +23,7 @@
   } else {
     echo "";
   }
-  
+  mysqli_close($conn);
 ?>
 <html>
     <head>
@@ -57,9 +57,9 @@
         </header>
         <div class="sidebar">
             <a class="active" href="home.php">Home</a>
-            <a href="">Adding Roles</a>
+            <a href="admin/roles.php">Adding Roles</a>
             <a href="">Question Update</a>
-            <a href="#list">Candidate Grading</a>
+            <a href="admin/candidatelist.php">Candidate Grading</a>
             <a href="#filter">Candidate Filtering</a>
             <a href="logout.php">Logout</a>
         </div>

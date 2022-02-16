@@ -1,4 +1,5 @@
 <?php
+    include('../aauth.php');
     $conn = mysqli_connect("localhost","root","","jobqualifier");
     if(!$conn)
     {

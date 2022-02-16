@@ -28,7 +28,7 @@
     if($mode=="admin")
     {
         $_SESSION['login_user'] = $name;
-        header("Location:dashboard.php");
+        header("Location:home.php");
     }
     else if($mode == "candidate")
     {

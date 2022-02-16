@@ -9,13 +9,13 @@
   {
     die("Connection to DB failed with : ".mysqli_connect_error());
   }
-  $id = "";
+  
   if(isset($_POST['role']) && !isset($_SESSION['appid']))
   {
     $_SESSION['roleid'] = $_POST['role'];
-    echo $_SESSION['roleid'];
     $sql = " select * from application;";
     $result=mysqli_query($conn,$sql);
+    $id = "";
     if($result)
     {
     if(mysqli_num_rows($result)==0)
@@ -37,7 +37,7 @@
         if(mysqli_num_rows($result)==0)
         {
             $sql = "insert into application values('$id','pending',curdate(),'".$_POST['role']."');";
-            $insert = mysqli_query($conn,$sql);
+            $insert = mysqli_query($conn,$sql) or die("Application not created!!".mysqli_error($conn));
             $_SESSION['appid'] = $id;
             if(!$insert)
             {
