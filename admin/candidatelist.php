@@ -126,7 +126,8 @@
                                     const recordedMedia = document.createElement("video");
                                     recordedMedia.controls = true;
                                     const recordedMediaURL = window.URL.createObjectURL(new Blob(binaryData, {type: "video/mp4"}))
-                                    recordedMedia.src = binaryData;
+                                    
+                                    recordedMedia.src = recordedMediaURL;
                                     //const blob = new Blob(datum);
                                     //console.log(res);
                                     
