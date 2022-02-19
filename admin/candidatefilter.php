@@ -51,7 +51,17 @@
         </div>
         <div class="content">
             <div class="container"><br>
-            
+                <div>
+                    <label for="tenth">10th Percentage</label>
+                    <input type="text" name="per10" id="tenth">
+                    <label for="tenth">12th Percentage</label>
+                    <input type="text" name="per12" id="twelfth">
+                    <label for="tenth">UG Percentage</label>
+                    <input type="text" name="ugcgpa" id="ug">
+                    <label for="tenth">PG Percentage</label>
+                    <input type="text" name="pgcgpa" id="pg">
+                    <input type="button" value="Filter" onclick="search()">
+                </div>
             </div>
         </div>
     </body>
