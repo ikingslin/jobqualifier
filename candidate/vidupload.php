@@ -10,7 +10,8 @@
 		die("DB Connect failed".mysqli_connect_error());
 	}
 	
-	
+
+	extract($_POST);
 	$app = $_SESSION['appid'];
     $can = $_SESSION['cid'];
     $qid = $_POST['qid'];
