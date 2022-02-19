@@ -60,8 +60,8 @@ if(!isset($_SESSION))
             <a class="active" href="dashboard.php">Home</a>
             <a href="admin/roles.php">Adding Roles</a>
             <a href="">Question Update</a>
-            <a href="#list">Candidate Grading</a>
-            <a href="#filter">Candidate Filtering</a>
+            <a href="admin/candidatelist.php">Candidate Grading</a>
+            <a href="admin/candidatefilter.php">Candidate Filtering</a>
             <a href="logout.php">Logout</a>
         </div>
         <div class="content">

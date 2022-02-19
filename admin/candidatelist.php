@@ -74,7 +74,7 @@
             <a href="roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a class="active" href="candidatelist.php">Candidate Grading</a>
-            <a href="#filter">Candidate Filtering</a>
+            <a href="candidatefilter.php">Candidate Filtering</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">

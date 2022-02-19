@@ -60,7 +60,7 @@
             <a href="admin/roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a href="admin/candidatelist.php">Candidate Grading</a>
-            <a href="#filter">Candidate Filtering</a>
+            <a href="admin/candidatefilter.php">Candidate Filtering</a>
             <a href="logout.php">Logout</a>
         </div>
         
