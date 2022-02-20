@@ -5,7 +5,7 @@
     {
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
-
+    
     $roles = 'SELECT * FROM `roles` WHERE last_date>sysdate()';
     $result = mysqli_query($conn,$roles);
     $jsroles = array();
@@ -28,7 +28,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>Adding Roles</title>
+        <title>Candidate List</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -74,13 +74,13 @@
             <a href="roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a class="active" href="candidatelist.php">Candidate Grading</a>
-            <a href="#filter">Candidate Filtering</a>
+            <a href="candidatefilter.php">Candidate Filtering</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
             <div class="container"><br>
                 <form action="candidatelist.php" method="post" class="d-flex">
-                    <select name="roles" id="role" class="form-select form-select-lg"></select>&nbsp;&nbsp;
+                    <select name="roles" id="role" class="form-select form-select-lg" onchange="this.form.submit()"></select>&nbsp;&nbsp;
                     <button type="submit" class="btn btn-success">Show</button>
                     
                 </form>
@@ -88,17 +88,19 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="stopVideo()"></button>
                     </div>
                     <div class="modal-body">
                         
                         <script>
                             
-                            function videoplay()
+                            function videoplay(a,b,c)
                             {
                                 var fd = new FormData();
-	                            fd.append('qid', 'Q0006');
-                                fd.append('appid', 'il');
+                                //console.log("Inside videoplay");
+	                            fd.append('qid', a);
+                                fd.append('cid', b);
+                                fd.append('appid', c);
                                 $.ajax({
 		                            url: 'vidreceive.php',
 		                            type: 'POST',
@@ -106,6 +108,12 @@
 		                            processData: false,
 		                            contentType: false
 	                            }).done(function(datum) {
+                                    console.log(datum);
+                                    var video = document.getElementById("player");
+                                    var track=video.videoTracks;
+                                    console.log(track);
+                                    video.src ="test.mp4";
+                                    video.load();
 		                            //console.log(typeof datum);
                                     //chunks = new array(datum);
                                    // let def = new FileReader();
@@ -121,13 +129,16 @@
                                     const recordedMediaURL = URL.createObjectURL(blob);
                                     recordedMedia.src = blob;
                                     }*/
-                                    var binaryData = [];
+                                    /*var binaryData = [];
                                     binaryData.push(datum);
+                                    
                                     const recordedMedia = document.createElement("video");
                                     recordedMedia.controls = true;
-                                    const recordedMediaURL = window.URL.createObjectURL(new Blob(binaryData, {type: "video/mp4"}))
+                                    const blob = new Blob(binaryData, {type: "video/mp4"});
+                                    console.log(blob);
+                                    const recordedMediaURL = window.URL.createObjectURL(blob);
                                     
-                                    recordedMedia.src = recordedMediaURL;
+                                    recordedMedia.src = recordedMediaURL;*/
                                     //const blob = new Blob(datum);
                                     //console.log(res);
                                     
@@ -140,15 +151,16 @@
                         </script>
                         <div id="vid">
                             
-                            <video autoplay id="vid-container" style="background-color: black;">
-                                Your browser doesn't support 
-                                the video tag
-                            </video>
+                        <video width="300" preload="none" height="200" id="player" controls><source src="" type="video/mp4"></video>
+                        </div>
+                        <div>
+                            <input type="number" name="credit" id="credits">
+                            <input type="button" class="btn btn-success" value="Mark" onclick="credit()">        
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="stopVideo()">Close</button>
                     </div>
 
                 </div>
@@ -159,8 +171,9 @@
                     if($_SERVER["REQUEST_METHOD"] == "POST")
                     {
                         $selected = $_POST['roles'];
-                        $sql = "SELECT * FROM `answers` left join application on answers.application_id=application.application_id where application.roleid = '".$selected."';";
+                        $sql = "SELECT * FROM `answers` left join application on answers.application_id=application.application_id where answers.questionid IN (select questionid from question where role_id='".$selected."') AND application.status='pending';";
                         $result = mysqli_query($conn,$sql);
+                        
                         if($result->num_rows>0)
                         {
                             echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Question</th><th>Video</th><th>Status</th></thead></tr>";
@@ -169,19 +182,14 @@
                                 echo "<tr>";
                                 echo "<td>".$row['cid']."</td>";
                                 echo "<td>".$row['questionid']."</td>";
-                                echo "<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=\"videoplay()\">
-                                Play Video
-                                </button>";
-                                $vid = $row['video'];
-                                //echo $vid;
-                                //echo "<td>".$row['video']."</td>";
+                                echo "<td><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=videoplay("."'".$row['questionid']."','".$row['cid']."','".$row['application_id']."')>Play Video</button></td>";
                                 echo "<td>".$row['status']."</td>";
                                 echo "</tr>";
                             }
-                        echo "<table >";
+                        echo "<table>";
                         }
                     }
-                    //mysqli_close($conn);
+                    mysqli_close($conn);
                 ?>
             </div>
         </div>

@@ -11,24 +11,48 @@
 	}
 	if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-    $qid = $_POST['qid'];
-    $appid = $_POST['appid'];
-	//echo "Q:".$_POST['qid'];
-    //echo "Q:".$_POST['appid'];
+		$status=unlink("test.mp4");    
+		if($status){  
+		echo "File deleted successfully";    
+		}
+		else{  
+		echo "Sorry!";    
+		}  
+    	$qid = $_POST['qid'];
+    	$cid = $_POST['cid'];
+		$appid = $_POST['appid'];
+		$_SESSION['qid']=$_POST['qid'];
+    	$_SESSION['cid']=$_POST['cid'];
+		$_SESSION['appid']=$_POST['appid'];
 	
-	$sql = "SELECT video from answers where questionid='".$qid."';";
+		$sql = "SELECT video from answers where questionid='".$qid."' AND cid='".$cid."' AND application_id='".$appid."';";
+		//$sql = "SELECT video from answers where questionid='Q0006';";
 	
-	$result = mysqli_query($conn,$sql) or die ("Not Inserted ".mysqli_error($conn));
+		$result = mysqli_query($conn,$sql) or die ("Not Fetched ".mysqli_error($conn));
 	
-    if($result->num_rows>0)
-    {
-        while($row=$result->fetch_assoc())
-        {
-            $vid = $row['video'];
-        }
-    }
-    }
-    //$data = stripslashes($vid;
-    echo $vid;
-	mysqli_close($conn);
+    	if($result->num_rows>0)
+    	{
+        	while($row=$result->fetch_assoc())
+        	{
+            	file_put_contents("test.mp4",$row['video']);
+			
+			//header("Content-type: " . "video/mp4");
+			//echo $row['video'];
+      //  }
+    //}
+    //}
+	//header("Content-type: " . "video/mp4");
+	//echo $vid;
+    //$data = file_get_contents(stripslashes($vid));
+	//$data = stripslashes($vid);
+	
+	
+	//$blob_data = fbsql_read_blob($data);
+	//echo $vid;
+    //echo gettype($data);
+	//mysqli_close($conn);
+		}
+		
+	}
+}
 ?>
