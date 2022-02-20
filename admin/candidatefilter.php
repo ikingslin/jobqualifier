@@ -227,7 +227,7 @@
                                 $res = mysqli_query($conn,$sql);
                                 if($res->num_rows>0)
                                 {
-                                    echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>10th Percentage</th><th>12th Percentage</th><th>UG CGPA</th><th>PG CGPA</th><th>Work Experience</th><th>Projects</th><th>Internship</th><th>Area of Interests</th><th>Resume</th><th>Application No</th><th>Video Score</th></tr></thead>";
+                                    echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>10th Percentage</th><th>12th Percentage</th><th>UG CGPA</th><th>PG CGPA</th><th>Work Experience</th><th>Projects</th><th>Internship</th><th>Area of Interests</th><th>Resume</th><th>Application No</th><th>Video Score</th><th>Select</th></tr></thead>";
                                     while($row = $res->fetch_assoc())
                                     {
                                         
@@ -246,6 +246,7 @@
                                         echo "<td>".$row['resume']."</td>";
                                         echo "<td>".$row['application_id']."</td>";
                                         echo "<td>".$row['vidscore']."</td>";
+                                        echo "<td><input type=\"checkbox\" value=\"".$row['id']."\"</td>";
                                         //echo "<td>".$row['cid']."</td>";
                                         //echo "<td>".$row['cid']."</td>";
                                         echo "</tr>";
