@@ -186,10 +186,10 @@
                                 echo "<td>".$row['status']."</td>";
                                 echo "</tr>";
                             }
-                        echo "<table >";
+                        echo "<table>";
                         }
                     }
-                    //mysqli_close($conn);
+                    mysqli_close($conn);
                 ?>
             </div>
         </div>

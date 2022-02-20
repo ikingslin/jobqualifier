@@ -41,9 +41,7 @@
             $_SESSION['appid'] = $id;
             if(!$insert)
             {
-                $_SESSION['appid'] = "";
-                $_SESSION['cid'] = "";
-                $_SESSION['roleid'] = "";
+                //unset($_SESSION['appid']);
                 echo '<script>alert("Application failed!!")</script>';
                 header("Location:selectapplication.php");
             }
@@ -79,6 +77,7 @@
         }
     }
     else{
+        unset($_SESSION['appid']);
         header("Location:../candidatedashboard.php");
     }
   }

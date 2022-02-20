@@ -17,7 +17,7 @@
     $qid = $_POST['qid'];
 	echo "Q:".$_POST['qid'];
 	$vid = addslashes(file_get_contents($_FILES['videofile']['tmp_name']));
-	$sql = "INSERT INTO answers VALUES('".$app."','".$can."','".$qid."','".$vid."')";
+	$sql = "INSERT INTO answers(`application_id`, `cid`, `questionid`, `video`) VALUES('".$app."','".$can."','".$qid."','".$vid."')";
 	
 	mysqli_query($conn,$sql) or die ("Not Inserted ".mysqli_error($conn));
 	

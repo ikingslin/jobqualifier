@@ -39,3 +39,10 @@ function credit()
           console.log(datum);
      });
 }
+
+function selectionitem()
+{
+     //console.log(sessionStorage.getItem("selitem"));
+     var setitem = document.querySelector('#role');
+     setitem.value = sessionStorage.getItem("selitem");
+}
