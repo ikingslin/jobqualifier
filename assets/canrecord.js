@@ -25,7 +25,7 @@ function timer(timereq)
 	stopRecording();
 	}
 	}
-	document.getElementById("counter").innerHTML = timereq - timeleft;
+	document.getElementById("counter").innerHTML =  timeleft;
 	timeleft -= 1;
 }, 1000);
 }
