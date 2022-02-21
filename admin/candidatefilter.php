@@ -253,7 +253,7 @@
                                         echo "</tr>";
                                     }
                                     echo "<table>";
-                                    echo "<button type=\"submit\" value=\"Update\"></button>";
+                                    echo "<button type=\"submit\" class=\"btn btn-info\" value=\"Update\">Update</button>";
                                     echo "</form>";
                                 }
                                 echo "<script>sessionStorage.setItem(\"selitem\",\"$selected\")</script>";

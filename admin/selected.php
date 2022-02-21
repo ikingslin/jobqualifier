@@ -28,4 +28,5 @@
          $i++;
     }
     mysqli_close($conn);
+    header("Location:candidatefilter.php");
 ?>
