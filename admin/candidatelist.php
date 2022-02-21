@@ -51,7 +51,7 @@
             height: 240px;
         }
     </style>
-    <body>
+    <body onload="selection()">
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="../assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
@@ -192,6 +192,7 @@
                             }
                         echo "<table>";
                         }
+                        echo "<script>sessionStorage.setItem(\"seitem\",\"$selected\")</script>";
                     }
                     mysqli_close($conn);
                 ?>

@@ -254,11 +254,12 @@
                                     echo "<table>";
                                     
                                 }
+                                echo "<script>sessionStorage.setItem(\"selitem\",\"$selected\")</script>";
                             }
                         ?>
             </div>
         </div>
         <script src="../assets/canlist.js"></script>
-        <?php echo "<script>sessionStorage.setItem(\"selitem\",\"$selected\")</script>";?>
+        
     </body>
 </html> 
