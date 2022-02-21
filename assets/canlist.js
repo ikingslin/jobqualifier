@@ -43,12 +43,18 @@ function credit()
 function selectionitem()
 {
      //console.log(sessionStorage.getItem("selitem"));
-     var setitem = document.querySelector('#role');
-     setitem.value = sessionStorage.getItem("selitem");
+     if(sessionStorage.getItem("selitem"))
+     {
+          var setitem = document.querySelector('#role');
+          setitem.value = sessionStorage.getItem("selitem");
+     }
 }
 function selection()
 {
-     //console.log(sessionStorage.getItem("selitem"));
-     var setitem = document.querySelector('#role');
-     setitem.value = sessionStorage.getItem("seitem");
+     if(sessionStorage.getItem("selitem"))
+     {
+          //console.log(sessionStorage.getItem("selitem"));
+          var setitem = document.querySelector('#role');
+          setitem.value = sessionStorage.getItem("seitem");
+     }
 }
