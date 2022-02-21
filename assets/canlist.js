@@ -17,9 +17,10 @@ var video = document.getElementById("player");
 function stopVideo()
 {
           console.log("Reset");
+         //document.location.href="http://localhost:8000/jobqualifier/admin/candidatelist.php";
          
           video.pause();
-          video.src = '';
+          //video.remove();
           //video.children('source').prop('src', '');
           //video.remove();
 }
@@ -39,7 +40,6 @@ function credit()
           console.log(datum);
      });
 }
-
 function selectionitem()
 {
      //console.log(sessionStorage.getItem("selitem"));

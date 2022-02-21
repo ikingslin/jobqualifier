@@ -80,7 +80,7 @@
         <div class="content">
             <div class="container"><br>
                 <form action="candidatelist.php" method="post" class="d-flex">
-                    <select name="roles" id="role" class="form-select form-select-lg" onchange="this.form.submit()"></select>&nbsp;&nbsp;
+                    <select name="roles" id="role" class="form-select form-select-lg" onload="this.form.submit()" onchange="this.form.submit()"></select>&nbsp;&nbsp;
                     <button type="submit" class="btn btn-success">Show</button>
                     
                 </form>
@@ -108,12 +108,16 @@
 		                            processData: false,
 		                            contentType: false
 	                            }).done(function(datum) {
-                                    console.log(datum);
+                                    //console.log(datum);                                    
+                                    //var create = document.createElement("video");
+                                    //create.setAttribute("id","player");
                                     var video = document.getElementById("player");
-                                    var track=video.videoTracks;
-                                    console.log(track);
-                                    video.src ="test.mp4";
+                                     video.src ="";
+                                     video.load();
+                                     video.src = b+a+".mp4";
+                                    //video.src="test.mp4";
                                     video.load();
+
 		                            //console.log(typeof datum);
                                     //chunks = new array(datum);
                                    // let def = new FileReader();
@@ -182,7 +186,7 @@
                                 echo "<tr>";
                                 echo "<td>".$row['cid']."</td>";
                                 echo "<td>".$row['questionid']."</td>";
-                                echo "<td><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=videoplay("."'".$row['questionid']."','".$row['cid']."','".$row['application_id']."')>Play Video</button></td>";
+                                echo "<td><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=\"videoplay("."'".$row['questionid']."','".$row['cid']."','".$row['application_id']."')\">"."Play Video</button></td>";
                                 echo "<td>".$row['status']."</td>";
                                 echo "</tr>";
                             }
