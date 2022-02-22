@@ -40,6 +40,19 @@
         <link rel="stylesheet" href="../assets/formlabel.css">
         
     </head>
+    <style>
+        object{
+            width: 100%;
+            height: 100%;
+        }
+        .modal-dialog {
+            width: 1300px;
+            height:800px;
+        }
+        .modal-content {
+            height: 80%;        
+        }   
+    </style>
     <script>
         let roles = <?php echo json_encode($jsnames); ?>;
         let rolid = <?php echo json_encode($jsroles); ?>;
@@ -76,6 +89,38 @@
                 <select name="roles" id="role" class="form-select form-select-lg" onchange="this.form.submit()"></select>&nbsp;&nbsp;
                 <button type="submit" class="btn btn-success">Show</button>
             </form><br><br>
+            <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <script>
+                            function display(a)
+                            {
+                                console.log(a);
+                                //document.getElementById('pdfdisplay').src = a;
+                                // var pdf = new PDFObject({
+                                //     url: a,
+                                //     id: "pdfdisplay",
+                                //     pdfOpenParams: {
+                                //     view: "FitH"
+                                //     }
+                                // }).embed("psfdisplay");
+                                var displ = document.getElementById('disp');
+                                displ.data=a;
+                            }
+                        </script>
+                        <div id="pdfdisplay"></div>
+                        <object id="disp" data="" type="application/pdf" width="300" height="200">
+                                    
+                        </object>
+                    </div>
+                
+            </div>
+        </div>
+            </div>
             <button data-bs-toggle="collapse" class="btn btn-info" data-bs-target="#filters">Filters</button>
             <div class="collapse" id="filters">
                 <form method="POST" class="form" action="candidatefilter.php">
@@ -114,6 +159,7 @@
                     
                 </form>
                 </div>
+                
                 <script>
                     function search()
                     {
@@ -231,7 +277,7 @@
                                     echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>10th Percentage</th><th>12th Percentage</th><th>UG CGPA</th><th>PG CGPA</th><th>Work Experience</th><th>Projects</th><th>Internship</th><th>Area of Interests</th><th>Resume</th><th>Application No</th><th>Video Score</th><th>Select</th></tr></thead>";
                                     while($row = $res->fetch_assoc())
                                     {
-                                        
+                                        file_put_contents($row['id'].".pdf",$row['resume']);
                                         echo "<tr>";
                                         echo "<td>".$row['id']."</td>";
                                         echo "<td>".$row['name']."</td>";
@@ -244,7 +290,7 @@
                                         echo "<td>".$row['projects']."</td>";
                                         echo "<td>".$row['intern']."</td>";
                                         echo "<td>".$row['interests']."</td>";
-                                        echo "<td>".$row['resume']."</td>";
+                                        echo "<td><button type=\"button\" class=\"btn btn-info\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=\"display('".$row['id'].".pdf')\">".$row['name']."</button></td>";
                                         echo "<td>".$row['application_id']."</td>";
                                         echo "<td>".$row['vidscore']."</td>";
                                         echo "<td><input type=\"checkbox\" name=\"canset[]\" value=\"".$row['id']."/".$row['application_id']."\"</td>";
@@ -259,10 +305,12 @@
                                 echo "<script>sessionStorage.setItem(\"selitem\",\"$selected\")</script>";
                             }
                         ?>
+                        
             </div>
         </div>
         
         <script src="../assets/canlist.js"></script>
         
+
     </body>
 </html> 

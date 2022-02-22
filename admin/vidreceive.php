@@ -12,12 +12,12 @@
 	if($_SERVER["REQUEST_METHOD"] == "POST")
     {
 		$status=unlink($_SESSION['cid'].$_SESSION['qid'].".mp4");    
-		if($status){  
-		echo "File deleted successfully";    
-		}
-		else{  
-		echo "Sorry!";    
-		}
+		// if($status){  
+		// echo "File deleted successfully";    
+		// }
+		// else{  
+		// echo "Sorry!";    
+		// }
     	$qid = $_POST['qid'];
     	$cid = $_POST['cid'];
 		$appid = $_POST['appid'];

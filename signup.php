@@ -4,7 +4,8 @@
     {
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
-    if(isset($_POST['submit']))
+    
+    if($_SERVER["REQUEST_METHOD"]=="POST" and is_uploaded_file($_FILES['resume']['tmp_name']))
     {
         $sql="select * from candidate";
         $result=mysqli_query($conn,$sql);
@@ -34,7 +35,7 @@
         $projects = $_POST['projects'];
         $intern = $_POST['intern'];
         $interests = $_POST['interests'];
-        $resume = $_POST['resume'];
+        $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
         $sql = " select * from candidate where contact='".$contact."' and email='".$email."'";
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)==0)
@@ -54,6 +55,7 @@
             echo '<script>alert("You already have an account")</script>';
         }
     }
+    
     mysqli_close($conn);
 ?>
 <!DOCTYPE html>
@@ -73,7 +75,7 @@
             <h5 class="fs-2" id="companytitle" style="margin-left: 2%;">JobQualifier</h5>
         </header>
         <div class="container">
-            <form action="signup.php" method="post">
+            <form action="signup.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
                         <label for="cname">Name</label>
@@ -157,7 +159,7 @@
                     </div>
                     <div class="col">
                         <label for="resume">Resume</label>
-                        <input type="file" name="resume" id="resume" class="form-control" required/>
+                        <input type="file" name="resume" id="resumes" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="form-group">
