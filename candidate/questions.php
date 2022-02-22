@@ -136,7 +136,7 @@
 			the video tag
 		</video>
         
-        <center><div class="btn btn-success" id="status">The Recording will begin in<div class="btn btn-success" id="counter"></div></div></center>
+        <center><span class="btn btn-success" id="status">The Recording will begin in</span><span class="btn btn-success" id="counter"></span></center>
         
         
         <script src = "../assets/canrecord.js"></script>

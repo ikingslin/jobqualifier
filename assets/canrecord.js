@@ -16,16 +16,16 @@ function timer(timereq)
     clearInterval(downloadTimer);
 	if(timereq==15)
 	{
-	startRecording();
-	document.getElementById('counter').className = "btn btn-danger";
-	document.getElementById('status').className = "Recording";
-	document.getElementById('status').className = "btn btn-danger";
+		startRecording();
+		document.getElementById('counter').className = "btn btn-danger";
+		document.getElementById('status').className = "btn btn-danger";
+		document.getElementById('status').innerHTML = "Recording";
 	}
 	else{
-	stopRecording();
+		stopRecording();
 	}
 	}
-	document.getElementById("counter").innerHTML =  timeleft;
+	document.getElementById('counter').innerHTML =  timeleft;
 	timeleft -= 1;
 }, 1000);
 }
