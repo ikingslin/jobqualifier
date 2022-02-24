@@ -298,7 +298,7 @@
                                         //echo "<td>".$row['cid']."</td>";
                                         echo "</tr>";
                                     }
-                                    echo "<table>";
+                                    echo "</table>";
                                     echo "<button type=\"submit\" class=\"btn btn-info\" value=\"Update\">Update</button>";
                                     echo "</form>";
                                 }

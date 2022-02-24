@@ -9,7 +9,7 @@
   {
     die("Connection to DB failed with : ".mysqli_connect_error());
   }
-  $roles = 'SELECT `Name`,COUNT(roles.roleid) as rcount FROM (select * from roles where last_date > sysdate()) AS roles RIGHT join application on roles.roleid = application.roleid group by roles.roleid HAVING Name IS NOT NULL;';
+  $roles = 'SELECT `Name`,COUNT(roles.roleid) as rcount FROM (select * from roles) AS roles RIGHT join application on roles.roleid = application.roleid group by roles.roleid HAVING Name IS NOT NULL;';
   $result = mysqli_query($conn,$roles);
   $rol = array();
   $count = array();
