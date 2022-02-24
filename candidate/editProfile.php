@@ -82,7 +82,7 @@
             <a href="../candidatedashboard.php">Home</a>
             <a class="active" href="editProfile.php">Profile Edit</a>
             <a href="selectapplication.php">Apply for job</a>
-            <a href="#about">Status of Application</a>
+            <a href="candidate/statusview.php">Status of Application</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">

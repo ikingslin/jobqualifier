@@ -48,7 +48,7 @@
             <a href="../candidatedashboard.php">Home</a>
             <a href="editProfile.php">Profile Edit</a>
             <a class="active"href="selectapplication.php">Apply for job</a>
-            <a href="#about">Status of Application</a>
+            <a href="candidate/statusview.php">Status of Application</a>
             <a href="../logout.php">Logout</a>
         </div>
 

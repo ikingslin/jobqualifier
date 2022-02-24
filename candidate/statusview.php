@@ -13,7 +13,7 @@
     $sql = "SELECT id FROM candidate WHERE email='$email';";
     $res = mysqli_query($conn,$sql);
     $cid = $res->fetch_assoc();
-  	$roles = "SELECT Name,hires.status as stat,application.application_id from hires LEFT JOIN application ON hires.application_id=application.application_id  LEFT JOIN roles ON roles.roleid=application.roleid WHERE cid='$cid';";
+  	$roles = "SELECT Name,hires.status as stat,application.application_id from hires LEFT JOIN application ON hires.application_id=application.application_id  LEFT JOIN roles ON roles.roleid=application.roleid WHERE cid='".$cid['id']."';";
   	$result = mysqli_query($conn,$roles);
  	mysqli_close($conn);
 ?>
@@ -50,8 +50,8 @@
 		<div class="sidebar">
 			<a href="../candidatedashboard.php">Home</a>
 			<a href="editProfile.php">Profile Edit</a>
-			<a class="active"href="selectapplication.php">Apply for job</a>
-			<a href="#about">Status of Application</a>
+			<a href="selectapplication.php">Apply for job</a>
+			<a class="active" href="candidate/statusview.php">Status of Application</a>
 			<a href="../logout.php">Logout</a>
 		</div>
 		<div class="content">
@@ -59,12 +59,14 @@
                 <?php 
                     if($result->num_rows>0)
                     {
-                        "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Application ID</th><th>Name</th><th>Status</th></thead></tr>";
+                        echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Application ID</th><th>Name</th><th>Status</th></thead></tr>";
                         while($row = $result->fetch_assoc())
                         {
+							echo "<tr>";
                             echo "<td>".$row['application_id']."</td>";
                             echo "<td>".$row['Name']."</td>";
                             echo "<td>".$row['stat']."</td>";
+							echo "<tr>";
                         }
                         echo "</table>";
                     }
