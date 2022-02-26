@@ -65,12 +65,12 @@
             </ul>
         </header>
         <div class="sidebar">
-            <a href="../dashboard.php">Home</a>
+            <a href="../home.php">Home</a>
             <a class="active" href="roles.php">Adding Roles</a>
             <a href="">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a href="candidatefilter.php">Candidate Filtering</a>
-            <a href="candidatefinal.php">Level Scores</a>
+            <a href="candidatefinal.php">Qualified Candidates</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">

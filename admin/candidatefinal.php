@@ -52,9 +52,14 @@
             <a href="">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a href="candidatefilter.php">Candidate Filtering</a>
-            <a class="active" href="candidatefinal.php">Level Scores</a>
+            <a class="active" href="candidatefinal.php">Qualified Candidates</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
             <div class="container"><br>
+            
+            </div>
+        </div>
+    </body>
+</html>
             
