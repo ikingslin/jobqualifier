@@ -81,6 +81,7 @@
             <a href="">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a class="active" href="candidatefilter.php">Candidate Filtering</a>
+            <a href="candidatefinal.php">Level Scores</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
@@ -268,13 +269,13 @@
                                     echo "<br>UG CGPA BETWEEN $pg AND $epg<br>";
                                 }
                                 
-                                $sql = "select * from canfilter where selrole='$selected' ".$condition;
+                                $sql = "select * from canfilter where selrole='$selected' ".$condition." AND vidscore IS NOT NULL";
                                 //echo $sql;
                                 $res = mysqli_query($conn,$sql);
                                 if($res->num_rows>0)
                                 {
                                     echo "<form method=\"POST\" action=\"selected.php\">";
-                                    echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>10th Percentage</th><th>12th Percentage</th><th>UG CGPA</th><th>PG CGPA</th><th>Work Experience</th><th>Projects</th><th>Internship</th><th>Area of Interests</th><th>Resume</th><th>Application No</th><th>Video Score</th><th>Select</th></tr></thead>";
+                                    echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>10th Percentage</th><th>12th Percentage</th><th>UG CGPA</th><th>PG CGPA</th><th>Work Experience</th><th>Projects</th><th>Internship</th><th>Area of Interests</th><th>Resume</th><th>Application No</th><th>Video Score</th><th>Select</th><th>Reject</th></tr></thead>";
                                     while($row = $res->fetch_assoc())
                                     {
                                         file_put_contents($row['id'].".pdf",$row['resume']);
@@ -294,6 +295,7 @@
                                         echo "<td>".$row['application_id']."</td>";
                                         echo "<td>".$row['vidscore']."</td>";
                                         echo "<td><input type=\"checkbox\" name=\"canset[]\" value=\"".$row['id']."/".$row['application_id']."\"</td>";
+                                        echo "<td><input type=\"checkbox\" name=\"canfail[]\" value=\"".$row['id']."/".$row['application_id']."\"</td>";
                                         //echo "<td>".$row['cid']."</td>";
                                         //echo "<td>".$row['cid']."</td>";
                                         echo "</tr>";

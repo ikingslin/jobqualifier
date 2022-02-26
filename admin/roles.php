@@ -70,6 +70,7 @@
             <a href="">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a href="candidatefilter.php">Candidate Filtering</a>
+            <a href="candidatefinal.php">Level Scores</a>
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
