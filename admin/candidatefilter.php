@@ -78,6 +78,7 @@
         <div class="sidebar">
             <a href="../home.php">Home</a>
             <a href="roles.php">Adding Roles</a>
+            <a href="questions.php">Adding Questions</a>
             <a href="rolequestions.php">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a class="active" href="candidatefilter.php">Candidate Filtering</a>
@@ -308,7 +309,7 @@
                                 }
                                 else
                                 {
-                                    echo "<h3>No records found</h3>";
+                                    echo "<br><br><h3>No records found</h3>";
                                 }
                                 echo "<script>sessionStorage.setItem(\"selitem\",\"$selected\")</script>";
                             }

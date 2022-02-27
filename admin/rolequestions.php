@@ -65,6 +65,7 @@
         <div class="sidebar">
             <a href="../home.php">Home</a>
             <a href="roles.php">Adding Roles</a>
+            <a href="questions.php">Adding Questions</a>
             <a class="active" href="rolequestions.php">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a href="candidatefilter.php">Candidate Filtering</a>
@@ -101,7 +102,7 @@
                     $questions = mysqli_query($conn,"SELECT * FROM QUESTION WHERE ROLE_ID='$roleid';");
                 }
                 else{
-                    $questions = mysqli_query($conn,"SELECT questionid,question FROM QUESTION group by questionid; ");
+                    $questions = mysqli_query($conn,"SELECT * FROM QUES; ");
                 }
             ?>
             <br><br>
@@ -162,7 +163,7 @@
                             $questionid = $x;
                             $exists = mysqli_query($conn,"SELECT * FROM QUESTION WHERE ROLE_ID='$selectedrole' AND QUESTIONID='$questionid';");
                             if(mysqli_num_rows($exists)==0){
-                                $res = mysqli_query($conn,"SELECT * FROM QUESTION WHERE QUESTIONID='$questionid';");
+                                $res = mysqli_query($conn,"SELECT * FROM QUES WHERE QUESTIONID='$questionid';");
                                 $row = mysqli_fetch_assoc($res);
                                 $question = $row['question'];
                                 $sql = "INSERT INTO question (ROLE_ID,QUESTIONID,question) VALUES ('$selectedrole','$questionid','$question');";

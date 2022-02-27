@@ -58,6 +58,7 @@
         <div class="sidebar">
             <a class="active" href="home.php">Home</a>
             <a href="admin/roles.php">Adding Roles</a>
+            <a href="admin/questions.php">Adding Questions</a>
             <a href="admin/rolequestions.php">Question Update</a>
             <a href="admin/candidatelist.php">Candidate Grading</a>
             <a href="admin/candidatefilter.php">Candidate Filtering</a>

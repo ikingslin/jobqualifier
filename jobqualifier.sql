@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2022 at 08:00 PM
+-- Generation Time: Feb 27, 2022 at 09:55 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -66,6 +66,14 @@ CREATE TABLE `application` (
   `date` date NOT NULL,
   `roleid` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `application`
+--
+
+INSERT INTO `application` (`application_id`, `status`, `date`, `roleid`) VALUES
+('A0001', 'scored', '2022-02-28', 'R00001'),
+('A0002', 'pending', '2022-02-28', 'R00001');
 
 -- --------------------------------------------------------
 
@@ -137,6 +145,34 @@ CREATE TABLE `hires` (
   `rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `hires`
+--
+
+INSERT INTO `hires` (`AdminID`, `cid`, `application_id`, `status`, `tag`, `rating`) VALUES
+(10001, 'C0001', 'A0001', 'Selected', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ques`
+--
+
+CREATE TABLE `ques` (
+  `questionid` varchar(5) NOT NULL,
+  `question` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ques`
+--
+
+INSERT INTO `ques` (`questionid`, `question`) VALUES
+('Q0001', 'Describe briefly about yourself'),
+('Q0002', 'Why would like to apply to this post?'),
+('Q0003', 'Tell us about your most recent project work'),
+('Q0004', 'Are you a good team leader? Why or why not?');
+
 -- --------------------------------------------------------
 
 --
@@ -148,6 +184,14 @@ CREATE TABLE `question` (
   `question` varchar(150) NOT NULL,
   `role_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`questionid`, `question`, `role_id`) VALUES
+('Q0001', 'Describe briefly about yourself', 'R00001'),
+('Q0003', 'Tell us about your most recent project work', 'R00001');
 
 -- --------------------------------------------------------
 
@@ -222,6 +266,12 @@ ALTER TABLE `hires`
   ADD KEY `hires_ibfk_3` (`application_id`);
 
 --
+-- Indexes for table `ques`
+--
+ALTER TABLE `ques`
+  ADD PRIMARY KEY (`questionid`);
+
+--
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
@@ -269,7 +319,8 @@ ALTER TABLE `hires`
 -- Constraints for table `question`
 --
 ALTER TABLE `question`
-  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`roleid`);
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`roleid`),
+  ADD CONSTRAINT `question_ibfk_4` FOREIGN KEY (`questionid`) REFERENCES `ques` (`questionid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

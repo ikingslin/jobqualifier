@@ -7,28 +7,27 @@
     }
     if(isset($_POST['submit']))
     {
-        $id= $_POST['roleid'];
-        $role = $_POST['role'];
-        $require = $_POST['require'];
-        $qualify = $_POST['qualify'];
-        $ldate = $_POST['ldate'];
-        $sql = " select * from roles where roleid='".$id."'";
+        $sql="select * from ques";
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)==0)
-        {
-            $sql = "insert into roles values('$id','$role','$require','$qualify','$ldate')";
-            $insert = mysqli_query($conn,$sql);
-            if(!$insert)
-                echo '<script>alert("Cannot add the rule")</script>';
-            else
-            {
-                echo '<script>alert("Role added successfully")</script>';
-                header("Location:../home.php");
-            }
-        }
+            $id='Q0001';
         else
         {
-            echo '<script>alert("Role Id already exists")</script>';
+            $sql="select questionid from ques order by questionid desc limit 1";
+            $result=mysqli_query($conn,$sql);
+            $row=mysqli_fetch_row($result);
+            $id=$row[0];
+            $id++;
+        }
+        $ques = $_POST['ques'];
+        $sql = "INSERT INTO `ques`(`questionid`, `question`) VALUES ('$id','$ques')";
+        $insert = mysqli_query($conn,$sql);
+        if(!$insert)
+            echo '<script>alert("Cannot add the question")</script>';
+        else
+        {
+            header("Location:questions.php");
+            echo '<script>alert("Question added successfully")</script>';
         }
     }
     mysqli_close($conn);
@@ -66,8 +65,8 @@
         </header>
         <div class="sidebar">
             <a href="../home.php">Home</a>
-            <a class="active" href="roles.php">Adding Roles</a>
-            <a href="questions.php">Adding Questions</a>
+            <a href="roles.php">Adding Roles</a>
+            <a class="active" href="questions.php">Adding Questions</a>
             <a href="rolequestions.php">Question Update</a>
             <a href="candidatelist.php">Candidate Grading</a>
             <a href="candidatefilter.php">Candidate Filtering</a>
@@ -76,42 +75,18 @@
         </div>
         <div class="content">
             <div class="container">
-                <form action="roles.php" method="post">
+                <form action="questions.php" method="post">
                     <br>
                     <div class="row">
                         <div class="col">
-                            <label for="roleid">Role ID</label>
-                            <input type="text" name="roleid" id="roleid" pattern="R[0-9]{5}" class="form-control form-control-lg" required/>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col">
-                            <label for="role">Role</label>
-                            <input type="text" name="role" id="role" class="form-control form-control-lg" required/>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col">
-                            <label for="require">Requirements</label>
-                            <input type="text" name="require" id="require" class="form-control form-control-lg" required/>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col">
-                            <label for="qualify">Qualification</label>
-                            <input type="text" name="qualify" id="qualify" class="form-control form-control-lg" required/>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col">
-                            <label for="role">Last Date to Apply</label>
-                            <input type="date" name="ldate" id="ldate" class="form-control form-control-lg" required/>
+                            <label for="ques">Question</label>
+                            <input type="text" name="ques" id="ques" class="form-control form-control-lg" required/>
                         </div>
                     </div><br>
                     <div class="form-group">
                         <center>
-                            <input type="submit" value="Add" name="submit" class="btn btn-primary">
-                            <input type="reset" value="Reset" class="btn btn-primary">
+                            <input type="submit" value="    Add    " name="submit" class="btn btn-primary">
+                            <input type="reset" value="    Reset   " class="btn btn-primary">
                         </center>
                     </div>
                 </form>
