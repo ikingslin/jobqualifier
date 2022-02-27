@@ -173,9 +173,14 @@
         </div>
                 <?php
                 
-                    if($_SERVER["REQUEST_METHOD"] == "POST")
+                    if($_SERVER["REQUEST_METHOD"] == "POST"||isset($_SESSION['selectedlrole']))
                     {
-                        $selected = $_POST['roles'];
+                        $selected="";
+                        if(isset($_POST['roles']))
+                        {
+                            $_SESSION['selectedlrole'] = $_POST['roles'];
+                        }
+                        $selected = $_SESSION['selectedlrole'];
                         $sql = "SELECT * FROM `answers` left join application on answers.application_id=application.application_id left join question on answers.questionid=question.questionid where answers.questionid IN (select questionid from question where role_id='".$selected."');";
                         $result = mysqli_query($conn,$sql);
                         

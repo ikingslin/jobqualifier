@@ -222,7 +222,7 @@
                     }
                 </script>
                 <?php
-                            if($_SERVER['REQUEST_METHOD']=="POST")
+                            if($_SERVER['REQUEST_METHOD']=="POST"||isset($_SESSION['selectedrole']))
                             {
                                 $selected = "";
                                 if(isset($_POST['roles']))
@@ -269,7 +269,7 @@
                                     echo "<br>UG CGPA BETWEEN $pg AND $epg<br>";
                                 }
                                 
-                                $sql = "select * from canfilter where selrole='$selected' ".$condition." AND vidscore IS NOT NULL AND id not in (select cid from hires)";
+                                $sql = "select * from canfilter where selrole='$selected' ".$condition." AND vidscore IS NOT NULL AND application_id not in (select application_id from hires)";
                                 //echo $sql;
                                 $res = mysqli_query($conn,$sql);
                                 if($res->num_rows>0)

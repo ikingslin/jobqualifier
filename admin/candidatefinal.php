@@ -78,7 +78,7 @@
                 <button type="submit" class="btn btn-success">Show</button>
             </form><br><br>
                 <?php
-                    if($_SERVER['REQUEST_METHOD']=="POST")
+                    if($_SERVER['REQUEST_METHOD']=="POST"||isset($_SESSION['finalrole']))
                     {
                         $selected = "";
                         if(isset($_POST['roles']))
@@ -87,7 +87,7 @@
                         }
                     $selected = $_SESSION['finalrole'];
                                 
-                    $roles = "SELECT * FROM canfilter WHERE application_id is not null AND selrole='".$_POST['roles']."';";
+                    $roles = "SELECT * FROM canfilter WHERE application_id is not null AND selrole='".$selected."';";
                     $result = mysqli_query($conn,$roles);
                     if($result->num_rows>0)
                     {
