@@ -20,6 +20,6 @@
 	$sql = "INSERT INTO answers(`application_id`, `cid`, `questionid`, `video`) VALUES('".$app."','".$can."','".$qid."','".$vid."')";
 	
 	mysqli_query($conn,$sql) or die ("Not Inserted ".mysqli_error($conn));
-	
+	header("Location:questions.php");
 	mysqli_close($conn);
 ?>
