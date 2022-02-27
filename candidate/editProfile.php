@@ -101,15 +101,15 @@
             <a href="../logout.php">Logout</a>
         </div>
         <div class="content">
-            <div class="container">
+            <div class="container"><br><br>
                 <form action="editProfile.php" method="post" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-10">
                             <label for="cname">Name</label>
                             <input type="text" name="name" id="cname" value="<?php echo $arr['name']; ?>" class="form-control" disabled/>
                             <input type="hidden" name="cname" value="<?php echo $arr['name']; ?>">
                         </div>
-                        <div class="col">
+                        <div class="col-lg-2">
                             <img src="<?php echo $arr['id'].".jpg"; ?>" alt="No Image" id="pic" name="pic">
                         </div>
                     </div><br>
@@ -120,7 +120,7 @@
                         </div>
                     </div><br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="gender">Gender</label>
                             <select class="form-control" name="gender" disabled>
                                 <option >Select</option>
@@ -128,68 +128,68 @@
                                 <option value="male" <?php if ($arr['gender'] == 'male')  echo "selected"?>>Male</option>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="dob">Date of Birth</label>
                             <input type="date" name="dob" id="dob" value="<?php echo $arr['dob']; ?>" class="form-control" disabled/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="contact">Contact Number</label>
                             <input type="tel" name="contact" id="contact" pattern="[0-9]{10}" value="<?php echo $arr['contact']; ?>" class="form-control" required/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="pincode">Pincode</label>
                             <input type="tel" name="pincode" id="pincode" pattern="[0-9]{6}" value="<?php echo $arr['pincode']; ?>" class="form-control" required/>
                         </div>
                     </div><br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="per10">10th Percentage</label>
                             <input type="text" name="per10" id="per10" min="0.0" max="100.0" value="<?php echo $arr['per10']; ?>" class="form-control" disabled/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="per12">12th Percentage</label>
                             <input type="text" name="per12" id="per12" min="0.0" max="100.0" value="<?php echo $arr['per12']; ?>" class="form-control" disabled/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="ugcgpa">UG CGPA</label>
                             <input type="text" name="ugcgpa" id="ugcgpa" min="0.0" max="10.0" value="<?php echo $arr['ugcgpa']; ?>" class="form-control" required/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-3">
                             <label for="pgcgpa">PG CGPA</label>
                             <input type="text" name="pgcgpa" id="pgcgpa" min="0.0" max="10.0" value="<?php echo $arr['pgcgpa']; ?>" class="form-control" required/>
                         </div>
                     </div><br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-6">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" value="<?php echo $arr['email']; ?>" class="form-control" disabled/> 
                             <input type="hidden" name="uemail" value="<?php echo $arr['email']; ?>">
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6">
                             <label for="work">Work Experience</label>
                             <input type="text" name="work" id="work" value="<?php echo $arr['work']; ?>" class="form-control" required/>
                         </div>
                     </div><br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-6">
                             <label for="projects">Projects</label>
                             <input type="text" name="projects" id="projects" value="<?php echo $arr['projects']; ?>" class="form-control" required/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6">
                             <label for="intern">Internship</label>
                             <input type="text" name="intern" id="intern" value="<?php echo $arr['intern']; ?>" class="form-control" required/> 
                         </div>
                     </div><br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-lg-4">
                             <label for="interests">Area of interests</label>
                             <input type="text" name="interests" id="interests" value="<?php echo $arr['interests']; ?>" class="form-control" required/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-4">
                             <label for="resume">Resume</label>
                             <input type="file" name="resume" id="resume" class="form-control" accept=".pdf"/>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-4">
                             <label for="pic">Profile Picture</label>
                             <input type="file" name="pic" id="profile" class="form-control" accept=".jpg" />
                         </div>

@@ -63,7 +63,7 @@
 
 				<form action="selectapplication.php" method="post">
 					<div class="form-group">
-						<div class="col">
+						<div class="col md-6">
 							<div class="row">
 								<input type="text" name="role" class="form-control" id="srole">
 							</div><br>

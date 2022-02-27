@@ -61,7 +61,7 @@
         <script src="assets/admin.js"></script>
         <link rel="stylesheet" href="assets/index.css">
     </head>
-    <style>
+    <!-- <style>
         body, html 
         {
             height: 100%;
@@ -82,7 +82,7 @@
 
         .container 
         {
-            position: absolute;
+            position: fixed;
             margin: 50px;
             right: 500px;
             width: 25%;
@@ -100,14 +100,27 @@
             cursor: pointer;
             width: 100%;
         }
+    </style> -->
+    <style>
+        /* body{
+            background-image: url("assets/images/bg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        } */
     </style>
     <body>
-        <header class="d-flex justify-content-left align-items-center py-2 border-bottom bg-light">
+    <div class="bg-image" 
+            style="background-image: url('assets/images/bg.jpg');
+            height: 100vh">
+        <header class="d-flex justify-content-left align-items-center py-1 border-bottom bg-light">
             <img src="assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded-circle">
             <h5 class="fs-2" id="companytitle" style="margin-left: 2%;">JobQualifier</h5>
         </header>
+        
+        
         <div class="bg-img">
-            <div class="container">
+            <div class="container" style="max-width: fit-content;background-color:white;padding:5%;margin-top:5%;border-radius:3%;">
                 <h1>LOGIN</h1><br/>
                 <form action="" method="post">
                     <div class="form-group">
@@ -125,14 +138,13 @@
                         <label for="admin">Admin</label>
                     </div><br>
                     <div class="form-group">
-                        <p><input type="submit" value="Login" class="btn btn-dark"></p>
-                        <a href="signup.php">
-                            <input type="button" value="SignUp"  class="btn btn-dark">
-                        </a>
+                        <input type="submit" value="Login" class="btn btn-dark">
+                        <input type="button" value="SignUp"  class="btn btn-dark">
                         <span id="error"></span>
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     </body>
 </html>
