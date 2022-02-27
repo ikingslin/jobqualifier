@@ -54,7 +54,32 @@
 
         <div class="content">
           <div class="container">
-          
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <b class="fs-3">Read before proceeding:</b><br>
+                            <p>The Candidate will have 15 seconds to read and preapre an answer for the given question.</p>
+                            <p>The Answers must be for 60 seconds duration.</p>
+                            <p>The portal will proceed to the next question immediately after recording the response.</p>        
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <form action="questions.php" method="post">
+                            <input type="hidden" name="role" value="<?= $rol?>" />
+                            <input type="submit" value="Agree" id = "capplication" class="btn btn-success">
+                        </form>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">DisAgree</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
           <?php 
                 if($result){
                     if ($result->num_rows > 0) {
@@ -82,12 +107,9 @@
             <p>If hired, I agree to abide by all of the Company rules and regulations. I agree that in the event R/GA should employ me, my employment may be terminated at any time by either party for any reason or for no reason.</p>
             <input type="checkbox" name="cagreement" id="agreement" onchange="allows()"/> I agree<br><br>
 
-            <form action="questions.php" method="post">
-                <input type="hidden" name="role" value="<?= $rol?>" />
-                <input type="submit" value="Apply" id = "capplication" class="btn btn-primary">
-            </form>
+            
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="oapplication">Agree</button>
 
-            </button>
             </div>
             
       </div>

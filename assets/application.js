@@ -3,14 +3,16 @@ function allows()
 {
     var selected = document.getElementById('agreement');
     var app = document.getElementById('capplication');
-    
+    var oapp = document.getElementById('oapplication');
     if(selected.checked)
     {
         app.disabled=false;
+        oapp.disabled=false;
     }
     else
     {
         app.disabled=true;
+        oapp.disabled=true;
     }
 
 }

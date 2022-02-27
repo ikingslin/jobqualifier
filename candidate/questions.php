@@ -103,7 +103,7 @@
 	        margin: 6px auto;
 	        width: 420px;
 	        height: 240px;
-}
+        }
     </style>
     <body onload="timer(15)">
     <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">

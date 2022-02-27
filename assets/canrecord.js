@@ -79,3 +79,8 @@ function upload(blob)
 	});
 	
 }
+
+function warning()
+{
+	
+}
