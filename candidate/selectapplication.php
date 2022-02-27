@@ -65,7 +65,7 @@
 					<div class="form-group">
 						<div class="col">
 							<div class="row">
-								<input type="text" name="role" class="form-group" id="srole">
+								<input type="text" name="role" class="form-control" id="srole">
 							</div><br>
 							<div class="row">
 								<button type="submit" name="Search" class="btn btn-info">Search</button>
