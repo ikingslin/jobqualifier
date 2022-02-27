@@ -63,8 +63,14 @@
 
 				<form action="selectapplication.php" method="post">
 					<div class="form-group">
-						<input type="text" name="role" class="form-text" id="srole">
-						<button type="submit" name="Search" class="btn btn-info">Search</button>
+						<div class="col">
+							<div class="row">
+								<input type="text" name="role" class="form-text" id="srole">
+							</div><br>
+							<div class="row">
+								<button type="submit" name="Search" class="btn btn-info">Search</button>
+							</div><br>
+						</div>
 					</div>
 				</form>
 				<?php if ($result->num_rows > 0) :?>
