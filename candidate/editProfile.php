@@ -187,11 +187,11 @@
                         </div>
                         <div class="col">
                             <label for="resume">Resume</label>
-                            <input type="file" name="resume" id="resume" class="form-control"/>
+                            <input type="file" name="resume" id="resume" class="form-control" accept=".pdf"/>
                         </div>
                         <div class="col">
                             <label for="pic">Profile Picture</label>
-                            <input type="file" name="pic" id="profile" class="form-control"/>
+                            <input type="file" name="pic" id="profile" class="form-control" accept=".jpg" />
                         </div>
                     </div><br>
                     <div class="form-group">

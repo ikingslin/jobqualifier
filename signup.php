@@ -161,11 +161,11 @@
                     </div>
                     <div class="col">
                         <label for="resume">Resume</label>
-                        <input type="file" name="resume" id="resumes" class="form-control" required/>
+                        <input type="file" name="resume" id="resumes" class="form-control" accept=".pdf" required/>
                     </div>
                     <div class="col">
                         <label for="pic">Profile Picture</label>
-                        <input type="file" name="pic" id="picture" class="form-control" required/>
+                        <input type="file" name="pic" id="picture" class="form-control" accept=".jpg" required/>
                     </div>
                 </div><br>
                 <div class="form-group">
