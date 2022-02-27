@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2022 at 08:44 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Feb 27, 2022 at 08:00 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,8 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`AdminID`, `email`, `password`) VALUES
-(1, 'issackingslin2000@gmail.com', 'welcome'),
-(2, 'Preeti', 'welcome');
+(10001, 'admin@gmail.com', 'admin');
 
 -- --------------------------------------------------------
 
@@ -76,7 +75,7 @@ CREATE TABLE `application` (
 
 CREATE TABLE `candidate` (
   `name` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(300) NOT NULL,
   `address` varchar(50) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `dob` date NOT NULL,
@@ -92,17 +91,11 @@ CREATE TABLE `candidate` (
   `intern` varchar(50) DEFAULT NULL,
   `interests` varchar(50) NOT NULL,
   `resume` mediumblob NOT NULL,
-  `id` varchar(6) NOT NULL
+  `id` varchar(6) NOT NULL,
+  `profile` longblob NOT NULL,
+  `mime` varchar(10) NOT NULL,
+  `account_status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `candidate`
---
-
-INSERT INTO `candidate` (`name`, `password`, `address`, `gender`, `dob`, `contact`, `pincode`, `per10`, `per12`, `ugcgpa`, `pgcgpa`, `email`, `work`, `projects`, `intern`, `interests`, `resume`, `id`) VALUES
-('ISSAC KINGSLIN G', 'candidate', '9/47A NEHRU NAGAR EAST,CIVIL AERODROME POST,COIMBA', 'male', '2000-09-19', 8523959368, 641014, 93, 77, 93, 0, 'kingslin.gnanasekar@gmail.com', '-', 'Student Requisites Android App', '-', 'Blockchain', 0x4973736163204b696e67736c696e20526573756d652e706466, 'C0001'),
-('Muthu', 'welcome', '35B, Periyar Nagar,Coimbatore', 'male', '1999-04-09', 9465489784, 641035, 80, 60, 75, 60, 'muthu@gmail.com', '2', 'Machine Leaning in Farming', 'Zolo', 'Big Data', 0x492053454d204d43415f4f46464c494e4520434c4153532054542e706466, 'C0002'),
-('Maran', 'welcome', '4A, Kalapatti,Coimbatore', 'male', '1998-05-12', 9465431546, 641045, 85, 70, 80, 80, 'maran@gmail.com', 'Caramel Corp 2 Years', 'Block Chain Payment', 'Toyola 2 years', 'Web Development', 0x4973736163204b696e67736c696e20526573756d652e706466, 'C0003');
 
 -- --------------------------------------------------------
 
@@ -156,20 +149,6 @@ CREATE TABLE `question` (
   `role_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `question`
---
-
-INSERT INTO `question` (`questionid`, `question`, `role_id`) VALUES
-('Q0001', 'What are your strengths?', 'R0001'),
-('Q0002', 'What are your weaknesses?', 'R0001'),
-('Q0003', 'Why do you want this job?', 'R0001'),
-('Q0004', 'What\'s your ideal company?', 'R0002'),
-('Q0005', 'What attracted you to this company?', 'R0002'),
-('Q0006', 'Why should we hire you?', 'R0003'),
-('Q0007', 'Why do you want this job?', 'R0004'),
-('Q0008', 'Why should we hire you?', 'R0004');
-
 -- --------------------------------------------------------
 
 --
@@ -189,10 +168,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`roleid`, `Name`, `requirement`, `qualification`, `last_date`) VALUES
-('R0001', 'Manager', 'Overall CGPA 60%', 'MCA, B.E. CSE', '2022-02-16'),
-('R0002', 'Associate Analyst', '60% CGPA overall', 'MCA', '2022-02-23'),
-('R0003', 'Senior Analyst', '70% CGPA', 'MCA', '2022-02-24'),
-('R0004', 'Clerk', '50 CGPA overall', 'Any Degree', '2022-02-05');
+('R00001', 'Data Analyst', 'UG and PG CGPA above 8', 'MCA', '2022-03-03'),
+('R00002', 'Software Engineer', 'Overall Percentage above 80%', 'B.Tech , M.Tech, M.Sc, B.Sc', '2022-03-08');
 
 -- --------------------------------------------------------
 
@@ -201,7 +178,7 @@ INSERT INTO `roles` (`roleid`, `Name`, `requirement`, `qualification`, `last_dat
 --
 DROP TABLE IF EXISTS `canfilter`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `canfilter`  AS SELECT `candidate`.`name` AS `name`, `candidate`.`gender` AS `gender`, `candidate`.`per10` AS `per10`, `candidate`.`per12` AS `per12`, `candidate`.`ugcgpa` AS `ugcgpa`, `candidate`.`pgcgpa` AS `pgcgpa`, `candidate`.`email` AS `email`, `candidate`.`work` AS `work`, `candidate`.`projects` AS `projects`, `candidate`.`intern` AS `intern`, `candidate`.`interests` AS `interests`, `candidate`.`resume` AS `resume`, `candidate`.`id` AS `id`, `ans`.`application_id` AS `application_id`, `ans`.`vidscore` AS `vidscore`, `grole`.`selrole` AS `selrole` FROM ((`candidate` left join (select `answers`.`application_id` AS `application_id`,`answers`.`cid` AS `cid`,sum(`answers`.`mark`) AS `vidscore` from `answers` group by `answers`.`application_id`,`answers`.`cid`) `ans` on(`candidate`.`id` = `ans`.`cid`)) left join (select `roles`.`roleid` AS `selrole`,`application`.`application_id` AS `application_id`,`roles`.`Name` AS `Name` from (`roles` left join `application` on(`roles`.`roleid` = `application`.`roleid`))) `grole` on(`ans`.`application_id` = `grole`.`application_id`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `canfilter`  AS SELECT `candidate`.`name` AS `name`, `candidate`.`gender` AS `gender`, `candidate`.`per10` AS `per10`, `candidate`.`per12` AS `per12`, `candidate`.`ugcgpa` AS `ugcgpa`, `candidate`.`pgcgpa` AS `pgcgpa`, `candidate`.`email` AS `email`, `candidate`.`work` AS `work`, `candidate`.`projects` AS `projects`, `candidate`.`intern` AS `intern`, `candidate`.`interests` AS `interests`, `candidate`.`resume` AS `resume`, `candidate`.`id` AS `id`, `ans`.`application_id` AS `application_id`, `ans`.`vidscore` AS `vidscore`, `grole`.`selrole` AS `selrole` FROM ((`candidate` left join (select `answers`.`application_id` AS `application_id`,`answers`.`cid` AS `cid`,sum(`answers`.`mark`) AS `vidscore` from `answers` group by `answers`.`application_id`,`answers`.`cid`) `ans` on(`candidate`.`id` = `ans`.`cid`)) left join (select `roles`.`roleid` AS `selrole`,`application`.`application_id` AS `application_id`,`roles`.`Name` AS `Name` from (`roles` left join `application` on(`roles`.`roleid` = `application`.`roleid`))) `grole` on(`ans`.`application_id` = `grole`.`application_id`)) ;
 
 --
 -- Indexes for dumped tables
@@ -226,7 +203,7 @@ ALTER TABLE `answers`
 --
 ALTER TABLE `application`
   ADD PRIMARY KEY (`application_id`),
-  ADD KEY `roleid` (`roleid`);
+  ADD KEY `application_ibfk_1` (`roleid`);
 
 --
 -- Indexes for table `candidate`
@@ -241,15 +218,15 @@ ALTER TABLE `candidate`
 --
 ALTER TABLE `hires`
   ADD PRIMARY KEY (`AdminID`,`cid`,`application_id`),
-  ADD KEY `cid` (`cid`),
-  ADD KEY `application_id` (`application_id`);
+  ADD KEY `hires_ibfk_2` (`cid`),
+  ADD KEY `hires_ibfk_3` (`application_id`);
 
 --
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
-  ADD PRIMARY KEY (`questionid`),
-  ADD KEY `role_id` (`role_id`);
+  ADD PRIMARY KEY (`questionid`,`role_id`),
+  ADD KEY `question_ibfk_1` (`role_id`);
 
 --
 -- Indexes for table `roles`
@@ -265,21 +242,11 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `AdminID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `AdminID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10002;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `answers`
---
-ALTER TABLE `answers`
-  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`application_id`) REFERENCES `application` (`application_id`),
-  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`cid`) REFERENCES `candidate` (`id`),
-  ADD CONSTRAINT `answers_ibfk_3` FOREIGN KEY (`questionid`) REFERENCES `question` (`questionid`),
-  ADD CONSTRAINT `answers_ibfk_4` FOREIGN KEY (`application_id`) REFERENCES `application` (`application_id`),
-  ADD CONSTRAINT `answers_ibfk_5` FOREIGN KEY (`application_id`) REFERENCES `application` (`application_id`);
 
 --
 -- Constraints for table `application`

@@ -63,16 +63,17 @@
 
 				<form action="selectapplication.php" method="post">
 					<div class="form-group">
-						<div class="col md-6">
-							<div class="row">
+						<div class="row">
+							<div class="col">
 								<input type="text" name="role" class="form-control" id="srole">
-							</div><br>
-							<div class="row">
-								<button type="submit" name="Search" class="btn btn-info">Search</button>
-							</div><br>
+							</div>
+							<div class="col">
+								<button type="submit" name="Search" class="btn btn-primary">Search</button>
+							</div>
 						</div>
 					</div>
 				</form>
+				<br><br>
 				<?php if ($result->num_rows > 0) :?>
 				<?php while($row = $result->fetch_assoc()) :?>
 				<div class="card card-default">

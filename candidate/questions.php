@@ -42,14 +42,14 @@
             if(!$insert)
             {
                 //unset($_SESSION['appid']);
-                echo '<script>alert("Application failed!!")</script>';
                 header("Location:selectapplication.php");
+                echo '<script>alert("Application failed!!")</script>';
             }
         }
         else
         {
-            echo '<script>alert("You already have applied for this post")</script>';
             header("Location:selectapplication.php");
+            echo '<script>alert("You already have applied for this post")</script>';
         }
   }
   $candidate = "SELECT id FROM candidate WHERE email = '".$_SESSION['login_user']."';";
@@ -141,7 +141,6 @@
         <button value="Stop" onclick="stopRecording()" id="nextbtn" disabled="disabled" class="btn btn-danger">Stop</button>
         <!-- <input type="button" value="Next"> -->
         </center>
-        
         
         <script src = "../assets/canrecord.js"></script>
         <script>

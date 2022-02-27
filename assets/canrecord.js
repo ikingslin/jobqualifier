@@ -75,7 +75,7 @@ function upload(blob)
 		contentType: false
 	}).done(function(datum) {
 		//console.log(datum);
-		window.location.href="http://localhost:8000/jobqualifier/candidate/questions.php";
+		window.location.href="/jobqualifier/candidate/questions.php";
 	});
 	
 }

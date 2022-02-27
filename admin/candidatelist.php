@@ -181,7 +181,7 @@
                             $_SESSION['selectedlrole'] = $_POST['roles'];
                         }
                         $selected = $_SESSION['selectedlrole'];
-                        $sql = "SELECT * FROM `answers` left join application on answers.application_id=application.application_id left join question on answers.questionid=question.questionid where answers.questionid IN (select questionid from question where role_id='".$selected."');";
+                        $sql = "SELECT * FROM `answers` join application on answers.application_id=application.application_id join question on application.roleid=question.role_id and answers.questionid=question.questionid where question.role_id='".$selected."';";
                         $result = mysqli_query($conn,$sql);
                         
                         if($result->num_rows>0)
@@ -202,7 +202,7 @@
                         }
                         else
                         {
-                            echo "<h3>No records found</h3>";
+                            echo "<br><h3>No records found</h3>";
                         }
                         echo "<script>sessionStorage.setItem(\"seitem\",\"$selected\")</script>";
                     }

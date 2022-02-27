@@ -43,7 +43,7 @@
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)==0)
         {
-            $sql = "insert into candidate values('$name','$hash','$address','$gender','$dob','$contact','$pincode','$per10','$per12','$ugcgpa','$pgcgpa','$email','$work','$projects','$intern','$interests','$resume','$id','$pic','$mime')";
+            $sql = "insert into candidate(`name`, `password`, `address`, `gender`, `dob`, `contact`, `pincode`, `per10`, `per12`, `ugcgpa`, `pgcgpa`, `email`, `work`, `projects`, `intern`, `interests`, `resume`, `id`, `profile`, `mime`) values('$name','$hash','$address','$gender','$dob','$contact','$pincode','$per10','$per12','$ugcgpa','$pgcgpa','$email','$work','$projects','$intern','$interests','$resume','$id','$pic','$mime')";
             $insert = mysqli_query($conn,$sql);
             if(!$insert)
                 echo '<script>alert("Cannot Create Account")</script>';

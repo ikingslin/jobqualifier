@@ -24,21 +24,21 @@
         $intern = $_POST['intern'];
         $interests = $_POST['interests'];
         
-        if(is_uploaded_file($_FILES['resume']['tmp_name']))
+        if(is_uploaded_file($_FILES['resume']['tmp_name'])&&is_uploaded_file($_FILES['pic']['tmp_name']))
         {
+            $pic = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
             $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
-            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume' WHERE `email`='$email'";
+            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume', `profile`='$pic' WHERE `email`='$email'";
         }
         else if(is_uploaded_file($_FILES['pic']['tmp_name']))
         {
             $pic = addslashes(file_get_contents($_FILES['pic']['tmp_name']));
             $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', `profile`='$pic' WHERE `email`='$email'";
         }
-        else if(is_uploaded_file($_FILES['resume']['tmp_name'])&&is_uploaded_file($_FILES['pic']['tmp_name']))
+        else if(is_uploaded_file($_FILES['resume']['tmp_name']))
         {
-            $pic = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
             $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
-            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume', `profile`='$pic' WHERE `email`='$email'";
+            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume' WHERE `email`='$email'";
         }
         else{
         $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests' WHERE `email`='$email'";
