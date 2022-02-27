@@ -36,11 +36,13 @@
         $intern = $_POST['intern'];
         $interests = $_POST['interests'];
         $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
+        $pic  = addslashes(file_get_contents($_FILES['pic']['tmp_name']));
+        $mime = $_FILES['pic']['type'];
         $sql = " select * from candidate where contact='".$contact."' and email='".$email."'";
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)==0)
         {
-            $sql = "insert into candidate values('$name','$pass','$address','$gender','$dob','$contact','$pincode','$per10','$per12','$ugcgpa','$pgcgpa','$email','$work','$projects','$intern','$interests','$resume','$id')";
+            $sql = "insert into candidate values('$name','$pass','$address','$gender','$dob','$contact','$pincode','$per10','$per12','$ugcgpa','$pgcgpa','$email','$work','$projects','$intern','$interests','$resume','$id','$pic','$mime')";
             $insert = mysqli_query($conn,$sql);
             if(!$insert)
                 echo '<script>alert("Cannot Create Account")</script>';
@@ -160,6 +162,10 @@
                     <div class="col">
                         <label for="resume">Resume</label>
                         <input type="file" name="resume" id="resumes" class="form-control" required/>
+                    </div>
+                    <div class="col">
+                        <label for="pic">Profile Picture</label>
+                        <input type="file" name="pic" id="picture" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="form-group">

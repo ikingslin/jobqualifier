@@ -29,6 +29,17 @@
             $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
             $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume' WHERE `email`='$email'";
         }
+        else if(is_uploaded_file($_FILES['pic']['tmp_name']))
+        {
+            $pic = addslashes(file_get_contents($_FILES['pic']['tmp_name']));
+            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', `profile`='$pic' WHERE `email`='$email'";
+        }
+        else if(is_uploaded_file($_FILES['resume']['tmp_name'])&&is_uploaded_file($_FILES['pic']['tmp_name']))
+        {
+            $pic = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
+            $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
+            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume', `profile`='$pic' WHERE `email`='$email'";
+        }
         else{
         $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests' WHERE `email`='$email'";
     }
@@ -43,6 +54,7 @@
     $sql = "select * from candidate where `email`='".$_SESSION['login_user']."'";
     $profile = mysqli_query($conn,$sql);
     $arr = mysqli_fetch_assoc($profile);
+    file_put_contents($arr['id'].".".'jpg',$arr['profile']);
     mysqli_close($conn);
 ?>
 <!DOCTYPE html>
@@ -57,6 +69,12 @@
         <link rel="stylesheet" href="../assets/index.css">
         <link rel="stylesheet" href="../assets/sidebar.css">
     </head>
+    <style>
+        #pic{
+            width: auto;
+            height: 150px;
+        }
+    </style>
     <body>
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
@@ -90,6 +108,9 @@
                             <label for="cname">Name</label>
                             <input type="text" name="name" id="cname" value="<?php echo $arr['name']; ?>" class="form-control" disabled/>
                             <input type="hidden" name="cname" value="<?php echo $arr['name']; ?>">
+                        </div>
+                        <div class="col">
+                            <img src="<?php echo $arr['id'].".jpg"; ?>" alt="No Image" id="pic" name="pic">
                         </div>
                     </div><br>
                     <div class="row">
@@ -168,14 +189,19 @@
                             <label for="resume">Resume</label>
                             <input type="file" name="resume" id="resume" class="form-control"/>
                         </div>
+                        <div class="col">
+                            <label for="pic">Profile Picture</label>
+                            <input type="file" name="pic" id="profile" class="form-control"/>
+                        </div>
                     </div><br>
                     <div class="form-group">
                         <center>
                             <input type="submit" value="Update Account" name="submit" class="btn btn-primary">
                         </center>
-                    </div>
+                    </div><br><br>
                 </form>
             </div>
         </div>  
+        <!-- <script src="../assets/application.js"></script> -->
     </body>
 </html>
