@@ -46,7 +46,7 @@
             
             <ul class="nav nav-pills align-items-center" style="margin-right:2%">
                 <li class="nav-item" style="margin-right:15px;">
-                    <?php echo $_SESSION['login_user'];?>
+                    <?php echo "Admin"?>
                 </li>
                 <li class="nav-item">
                     <a href="logout.php">
@@ -58,7 +58,7 @@
         <div class="sidebar">
             <a class="active" href="home.php">Home</a>
             <a href="admin/roles.php">Adding Roles</a>
-            <a href="">Question Update</a>
+            <a href="admin/rolequestions.php">Question Update</a>
             <a href="admin/candidatelist.php">Candidate Grading</a>
             <a href="admin/candidatefilter.php">Candidate Filtering</a>
             <a href="admin/candidatefinal.php">Qualified Candidates</a>

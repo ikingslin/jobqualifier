@@ -29,15 +29,12 @@
         $resume = $_POST['resume'];
         if($_FILES['resume']['name']==$resume) 
             $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests' WHERE `email`='$email'";
-        else
-            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests',`resume`='$resume' WHERE `email`='$email'";
         $insert = mysqli_query($conn,$sql);
         if(!$insert)
             echo '<script>alert("Cannot Update Account")</script>';
         else 
         {
             echo '<script>alert("Account Updated successfully")</script>';
-            header("Location:../candidatedashboard.php");
         }
     }
     else

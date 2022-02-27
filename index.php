@@ -115,10 +115,10 @@
                         <input type="password" name="apass" id="pass" class="form-control" required/>
                     </div><br>
                     <div class="form-group">
-                        <input type="radio" name="lmode" id="mode" value = "candidate" checked />
-                        <label for="mode">Candidate</label>
-                        <input type="radio" name="lmode" id="amode" value = "admin" />
-                        <label for="mode">Admin</label>
+                        <input type="radio" name="lmode" id="candidate" value = "candidate" checked />
+                        <label for="candidate">Candidate</label>
+                        <input type="radio" name="lmode" id="admin" value = "admin" />
+                        <label for="admin">Admin</label>
                     </div><br>
                     <div class="form-group">
                         <p><input type="submit" value="Login" class="btn btn-dark"></p>

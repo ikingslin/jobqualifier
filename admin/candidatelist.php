@@ -72,7 +72,7 @@
         <div class="sidebar">
             <a href="../home.php">Home</a>
             <a href="roles.php">Adding Roles</a>
-            <a href="">Question Update</a>
+            <a href="rolequestions.php">Question Update</a>
             <a class="active" href="candidatelist.php">Candidate Grading</a>
             <a href="candidatefilter.php">Candidate Filtering</a>
             <a href="candidatefinal.php">Qualified Candidates</a>

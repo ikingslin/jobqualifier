@@ -59,7 +59,7 @@ if(!isset($_SESSION))
         <div class="sidebar">
             <a class="active" href="dashboard.php">Home</a>
             <a href="admin/roles.php">Adding Roles</a>
-            <a href="">Question Update</a>
+            <a href="rolequestions.php">Question Update</a>
             <a href="admin/candidatelist.php">Candidate Grading</a>
             <a href="admin/candidatefilter.php">Candidate Filtering</a>
             <a href="logout.php">Logout</a>
