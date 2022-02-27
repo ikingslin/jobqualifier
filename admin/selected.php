@@ -10,7 +10,7 @@
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
     $cid = $_POST['canset'];
-    $fcid = $_POST['canfail'];
+    
     //echo $_POST['canset'];
     $i=0;
     $email = $_SESSION['login_user'];
@@ -23,20 +23,12 @@
     while(isset($cid[$i]))
     {
         $var = explode('/',$cid[$i]);
-        //echo $var[0]." ".$var[1];
-        $sql = "INSERT INTO `hires`(`AdminID`, `cid`, `application_id`, `status`) VALUES('$admin','$var[0]','$var[1]','clearedfilter')";
+        echo $var[0]." ".$var[1]." ".$var[2];
+        $sql = "INSERT INTO `hires`(`AdminID`, `cid`, `application_id`, `status`) VALUES('$admin','$var[0]','$var[1]','$var[2]')";
         mysqli_query($conn,$sql);
          $i++;
     }
-    $i=0;
-    while(isset($fcid[$i]))
-    {
-        $var = explode('/',$fcid[$i]);
-        //echo $var[0]." ".$var[1];
-        $sql = "INSERT INTO `hires`(`AdminID`, `cid`, `application_id`, `status`) VALUES('$admin','$var[0]','$var[1]','failedfilter')";
-        mysqli_query($conn,$sql);
-         $i++;
-    }
+    
     mysqli_close($conn);
     header("Location:candidatefilter.php");
 ?>

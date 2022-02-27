@@ -176,7 +176,7 @@
                     if($_SERVER["REQUEST_METHOD"] == "POST")
                     {
                         $selected = $_POST['roles'];
-                        $sql = "SELECT * FROM `answers` left join application on answers.application_id=application.application_id where answers.questionid IN (select questionid from question where role_id='".$selected."') AND application.status='pending';";
+                        $sql = "SELECT * FROM `answers` left join application on answers.application_id=application.application_id left join question on answers.questionid=question.questionid where answers.questionid IN (select questionid from question where role_id='".$selected."');";
                         $result = mysqli_query($conn,$sql);
                         
                         if($result->num_rows>0)
@@ -186,7 +186,7 @@
                             {
                                 echo "<tr>";
                                 echo "<td>".$row['cid']."</td>";
-                                echo "<td>".$row['questionid']."</td>";
+                                echo "<td>".$row['question']."</td>";
                                 echo "<td><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=\"videoplay("."'".$row['questionid']."','".$row['cid']."','".$row['application_id']."')\">"."Play Video</button></td>";
                                 echo "<td>".$row['status']."</td>";
                                 echo "</tr>";

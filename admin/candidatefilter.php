@@ -269,7 +269,7 @@
                                     echo "<br>UG CGPA BETWEEN $pg AND $epg<br>";
                                 }
                                 
-                                $sql = "select * from canfilter where selrole='$selected' ".$condition." AND vidscore IS NOT NULL";
+                                $sql = "select * from canfilter where selrole='$selected' ".$condition." AND vidscore IS NOT NULL AND id not in (select cid from hires)";
                                 //echo $sql;
                                 $res = mysqli_query($conn,$sql);
                                 if($res->num_rows>0)
@@ -294,8 +294,8 @@
                                         echo "<td><button type=\"button\" class=\"btn btn-info\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" onclick=\"display('".$row['id'].".pdf')\">".$row['name']."</button></td>";
                                         echo "<td>".$row['application_id']."</td>";
                                         echo "<td>".$row['vidscore']."</td>";
-                                        echo "<td><input type=\"checkbox\" name=\"canset[]\" value=\"".$row['id']."/".$row['application_id']."\"</td>";
-                                        echo "<td><input type=\"checkbox\" name=\"canfail[]\" value=\"".$row['id']."/".$row['application_id']."\"</td>";
+                                        echo "<td><input type=\"radio\" name=\"canset[]\" value=\"".$row['id']."/".$row['application_id']."/"."Selected"."\"</td>";
+                                        echo "<td><input type=\"radio\" name=\"canset[]\" value=\"".$row['id']."/".$row['application_id']."/"."Rejected"."\"</td>";
                                         //echo "<td>".$row['cid']."</td>";
                                         //echo "<td>".$row['cid']."</td>";
                                         echo "</tr>";

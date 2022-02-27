@@ -9,8 +9,20 @@
     {
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
-    $roles = 'SELECT * FROM `roles` WHERE last_date>sysdate()';
+    $roles = 'SELECT * FROM `roles`';
     $result = mysqli_query($conn,$roles);
+    $jsroles = array();
+    $jsnames = array();
+    if($result->num_rows>0)
+    {
+        $i = 0;
+        while($row=$result->fetch_assoc())
+        {
+            $jsroles[$i] = $row['roleid'];
+            $jsnames[$i] = $row['Name'];
+            $i++;
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +40,11 @@
         <link rel="stylesheet" href="../assets/formlabel.css">
         
     </head>
-    <body>
+    <script>
+        let roles = <?php echo json_encode($jsnames); ?>;
+        let rolid = <?php echo json_encode($jsroles); ?>;
+    </script>
+    <body onload="finalitem()">
         <header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
             <div class="d-flex align-items-center  me-md-auto">
                 <img src="../assets/images/logo.webp" alt="No Image" id="logo" style="margin-left: 2%;" class="rounded">
@@ -57,9 +73,43 @@
         </div>
         <div class="content">
             <div class="container"><br>
-            
+            <form action="candidatefinal.php" method="post" class="d-flex">
+                <select name="roles" id="role" class="form-select form-select-lg" onchange="this.form.submit()"></select>&nbsp;&nbsp;
+                <button type="submit" class="btn btn-success">Show</button>
+            </form><br><br>
+                <?php
+                    if($_SERVER['REQUEST_METHOD']=="POST")
+                    {
+                        $selected = "";
+                        if(isset($_POST['roles']))
+                        {
+                            $_SESSION['finalrole'] = $_POST['roles'];
+                        }
+                    $selected = $_SESSION['finalrole'];
+                                
+                    $roles = "SELECT * FROM canfilter WHERE application_id is not null AND selrole='".$_POST['roles']."';";
+                    $result = mysqli_query($conn,$roles);
+                    if($result->num_rows>0)
+                    {
+                        echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>Email</th><th>Application No</th></tr></thead>";
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo "<tr>";
+                            echo "<td>".$row['id']."</td>";
+                            echo "<td>".$row['name']."</td>";
+                            echo "<td>".$row['gender']."</td>";
+                            echo "<td>".$row['email']."</td>";
+                            echo "<td>".$row['application_id']."</td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                    }
+                    echo "<script>sessionStorage.setItem(\"finalitem\",\"$selected\")</script>";
+                }
+                ?>
             </div>
         </div>
+        <script src="../assets/canlist.js"></script>
     </body>
 </html>
             

@@ -51,10 +51,19 @@ function selectionitem()
 }
 function selection()
 {
-     if(sessionStorage.getItem("selitem"))
+     if(sessionStorage.getItem("seitem"))
      {
           //console.log(sessionStorage.getItem("selitem"));
           var setitem = document.querySelector('#role');
           setitem.value = sessionStorage.getItem("seitem");
+     }
+}
+
+function finalitem()
+{
+     if(sessionStorage.getItem("finalitem"))
+     {
+          var setitem = document.querySelector('#role');
+          setitem.value = sessionStorage.getItem("finalitem");
      }
 }
