@@ -131,7 +131,7 @@
         <span class="fs-3" id="ques">Question</span><br>
         <span class="fs-5" id="cquestion"><?php echo $question; ?></span><br>
         <video autoplay id="web-cam-container"
-			style="background-color: black;">
+			style="background-color: black;" muted="muted">
 			Your browser doesn't support
 			the video tag
 		</video>
