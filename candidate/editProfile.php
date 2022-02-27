@@ -9,26 +9,29 @@
     {
         die("Connection to DB failed with : ".mysqli_connect_error());
     }
-    if(isset($_POST['submit']))
+    
+    if($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['submit']))
     {
         $name = $_POST['cname'];
         $address = $_POST['address'];
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
         $contact = $_POST['contact'];
         $pincode = $_POST['pincode'];
-        $per10 = $_POST['per10'];
-        $per12 = $_POST['per12'];
         $ugcgpa = $_POST['ugcgpa'];
         $pgcgpa = $_POST['pgcgpa'];
-        $email = $_POST['email'];
+        $email = $_POST['uemail'];
         $work = $_POST['work'];
         $projects = $_POST['projects'];
         $intern = $_POST['intern'];
         $interests = $_POST['interests'];
-        $resume = $_POST['resume'];
-        if($_FILES['resume']['name']==$resume) 
-            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests' WHERE `email`='$email'";
+        
+        if(is_uploaded_file($_FILES['resume']['tmp_name']))
+        {
+            $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
+            $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests', resume='$resume' WHERE `email`='$email'";
+        }
+        else{
+        $sql = "UPDATE `candidate` SET `address`='$address',`contact`='$contact',`pincode`='$pincode',`ugcgpa`='$ugcgpa',`pgcgpa`='$pgcgpa',`work`='$work',`projects`='$projects',`intern`='$intern',`interests`='$interests' WHERE `email`='$email'";
+    }
         $insert = mysqli_query($conn,$sql);
         if(!$insert)
             echo '<script>alert("Cannot Update Account")</script>';
@@ -37,12 +40,9 @@
             echo '<script>alert("Account Updated successfully")</script>';
         }
     }
-    else
-    {
-        $sql = "select * from candidate where `email`='".$_SESSION['login_user']."'";
-        $profile = mysqli_query($conn,$sql);
-        $arr = mysqli_fetch_assoc($profile);
-    }
+    $sql = "select * from candidate where `email`='".$_SESSION['login_user']."'";
+    $profile = mysqli_query($conn,$sql);
+    $arr = mysqli_fetch_assoc($profile);
     mysqli_close($conn);
 ?>
 <!DOCTYPE html>
@@ -88,7 +88,8 @@
                     <div class="row">
                         <div class="col">
                             <label for="cname">Name</label>
-                            <input type="text" name="cname" id="cname" value="<?php echo $arr['name']; ?>" class="form-control" disabled/>
+                            <input type="text" name="name" id="cname" value="<?php echo $arr['name']; ?>" class="form-control" disabled/>
+                            <input type="hidden" name="cname" value="<?php echo $arr['name']; ?>">
                         </div>
                     </div><br>
                     <div class="row">
@@ -141,6 +142,7 @@
                         <div class="col">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" value="<?php echo $arr['email']; ?>" class="form-control" disabled/> 
+                            <input type="hidden" name="uemail" value="<?php echo $arr['email']; ?>">
                         </div>
                         <div class="col">
                             <label for="work">Work Experience</label>
