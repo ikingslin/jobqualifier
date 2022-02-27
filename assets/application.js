@@ -16,5 +16,14 @@ function allows()
 }
 function createapp()
 {
-    
+    document.createElement("list");
 }
+
+function searchlist() {
+    var input, filter;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    roles.filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+  }

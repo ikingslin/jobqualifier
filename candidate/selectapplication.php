@@ -9,18 +9,14 @@
   	{
     	die("Connection to DB failed with : ".mysqli_connect_error());
   	}
-  	$roles = 'select * from roles where last_date > sysdate() ;';
-  	$result = mysqli_query($conn,$roles);
-	$roles = array();
-	$i=0;
-	if($result->num_rows>0)
-	{
-		while($row = $result->fetch_assoc())
-		{
-			$roles[$i] = $row['Name'];
-			$i++;
-		}
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$word = $_POST['role'];
+  		$roles = "select * from roles where last_date > sysdate() AND Name LIKE '%$word%';";
 	}
+	else{
+		$roles = "select * from roles where last_date > sysdate();";
+	}
+  	$result = mysqli_query($conn,$roles);
  	mysqli_close($conn);
 ?>
 <!DOCTYPE html>
@@ -36,9 +32,7 @@
 		<link rel="stylesheet" href="../assets/sidebar.css">
 		<script src="../assets/application.js"></script>
 	</head>
-	<script>
-		let roles = <?php echo json_encode($roles); ?>;
-	</script>
+	
 	<body>
 		<header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
 			<div class="d-flex align-items-center  me-md-auto">
@@ -66,6 +60,13 @@
 		<div class="content">
 			<div class="container"><br>
 				<h3> Available Applications </h3><br/>
+
+				<form action="selectapplication.php" method="post">
+					<div class="form-group">
+						<input type="text" name="role" class="form-text" id="srole">
+						<button type="submit" name="Search" class="btn btn-info">Search</button>
+					</div>
+				</form>
 				<?php if ($result->num_rows > 0) :?>
 				<?php while($row = $result->fetch_assoc()) :?>
 				<div class="card card-default">
