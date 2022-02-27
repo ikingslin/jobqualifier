@@ -275,6 +275,7 @@
                                 if($res->num_rows>0)
                                 {
                                     echo "<form method=\"POST\" action=\"selected.php\">";
+                                    echo "<div class=\"table-responsive\">";
                                     echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>10th Percentage</th><th>12th Percentage</th><th>UG CGPA</th><th>PG CGPA</th><th>Work Experience</th><th>Projects</th><th>Internship</th><th>Area of Interests</th><th>Resume</th><th>Application No</th><th>Video Score</th><th>Select</th><th>Reject</th></tr></thead>";
                                     while($row = $res->fetch_assoc())
                                     {
@@ -302,7 +303,12 @@
                                     }
                                     echo "</table>";
                                     echo "<button type=\"submit\" class=\"btn btn-info\" value=\"Update\">Update</button>";
+                                    echo "</div>";
                                     echo "</form>";
+                                }
+                                else
+                                {
+                                    echo "<h3>No records found</h3>";
                                 }
                                 echo "<script>sessionStorage.setItem(\"selitem\",\"$selected\")</script>";
                             }

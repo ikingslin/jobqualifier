@@ -186,6 +186,7 @@
                         
                         if($result->num_rows>0)
                         {
+                            echo "<div class=\"table-responsive\">";
                             echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Question</th><th>Video</th><th>Status</th></thead></tr>";
                             while($row=$result->fetch_assoc())
                             {
@@ -197,6 +198,11 @@
                                 echo "</tr>";
                             }
                         echo "<table>";
+                        echo "</div>";
+                        }
+                        else
+                        {
+                            echo "<h3>No records found</h3>";
                         }
                         echo "<script>sessionStorage.setItem(\"seitem\",\"$selected\")</script>";
                     }

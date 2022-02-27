@@ -91,6 +91,7 @@
                     $result = mysqli_query($conn,$roles);
                     if($result->num_rows>0)
                     {
+                        echo "<div class=\"table-responsive\">";
                         echo "<table class = \"table\"><br><tr><thead class=\"table-dark\"><th>Candidate ID</th><th>Name</th><th>Gender</th><th>Email</th><th>Application No</th></tr></thead>";
                         while($row = $result->fetch_assoc())
                         {
@@ -103,6 +104,11 @@
                             echo "</tr>";
                         }
                         echo "</table>";
+                        echo "</div>";
+                    }
+                    else
+                    {
+                        echo "<h3>No records found</h3>";
                     }
                     echo "<script>sessionStorage.setItem(\"finalitem\",\"$selected\")</script>";
                 }
