@@ -11,6 +11,16 @@
   	}
   	$roles = 'select * from roles where last_date > sysdate() ;';
   	$result = mysqli_query($conn,$roles);
+	$roles = array();
+	$i=0;
+	if($result->num_rows>0)
+	{
+		while($row = $result->fetch_assoc())
+		{
+			$roles[$i] = $row['Name'];
+			$i++;
+		}
+	}
  	mysqli_close($conn);
 ?>
 <!DOCTYPE html>
@@ -26,6 +36,9 @@
 		<link rel="stylesheet" href="../assets/sidebar.css">
 		<script src="../assets/application.js"></script>
 	</head>
+	<script>
+		let roles = <?php echo json_encode($roles); ?>;
+	</script>
 	<body>
 		<header class="d-flex flex-wrap justify-content-left py-2 border-bottom bg-light">
 			<div class="d-flex align-items-center  me-md-auto">
@@ -76,5 +89,6 @@
 				<?php mysqli_free_result($result); ?>
 			</div>
 		</div>
+		<script src="../assets/application.js"></script>
 	</body>
 </html>

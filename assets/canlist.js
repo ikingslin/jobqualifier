@@ -16,7 +16,7 @@ var video = document.getElementById("player");
 
 function stopVideo()
 {
-          console.log("Reset");
+          //console.log("Reset");
          //document.location.href="http://localhost:8000/jobqualifier/admin/candidatelist.php";
          
           video.pause();
@@ -37,7 +37,7 @@ function credit()
 		processData: false,
 		contentType: false
 	}).done(function(datum) {
-          console.log(datum);
+          //console.log(datum);
      });
 }
 function selectionitem()
