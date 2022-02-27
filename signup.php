@@ -35,6 +35,7 @@
         $projects = $_POST['projects'];
         $intern = $_POST['intern'];
         $interests = $_POST['interests'];
+        $hash = password_hash($pass, PASSWORD_DEFAULT);
         $resume = addslashes(file_get_contents($_FILES['resume']['tmp_name']));
         $pic  = addslashes(file_get_contents($_FILES['pic']['tmp_name']));
         $mime = $_FILES['pic']['type'];
@@ -42,7 +43,7 @@
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)==0)
         {
-            $sql = "insert into candidate values('$name','$pass','$address','$gender','$dob','$contact','$pincode','$per10','$per12','$ugcgpa','$pgcgpa','$email','$work','$projects','$intern','$interests','$resume','$id','$pic','$mime')";
+            $sql = "insert into candidate values('$name','$hash','$address','$gender','$dob','$contact','$pincode','$per10','$per12','$ugcgpa','$pgcgpa','$email','$work','$projects','$intern','$interests','$resume','$id','$pic','$mime')";
             $insert = mysqli_query($conn,$sql);
             if(!$insert)
                 echo '<script>alert("Cannot Create Account")</script>';

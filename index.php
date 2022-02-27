@@ -15,7 +15,7 @@
     }
     else if($mode == "candidate")
     {
-        $query = "SELECT `email`,`password`,`name` FROM candidate WHERE email='$name' AND password='$pass'";
+        $query = "SELECT `email`,`password`,`name` FROM candidate WHERE email='$name'";
     }
     $result = mysqli_query($conn,$query);
     
@@ -23,7 +23,7 @@
     {
         echo '<script>alert("Invalid Credentials")</script>';
     }
-    else if(mysqli_num_rows($result) > 0)
+    else if(mysqli_num_rows($result) == 1)
     {
     if($mode=="admin")
     {
@@ -32,17 +32,21 @@
     }
     else if($mode == "candidate")
     {
-        while($row = mysqli_fetch_array($result)) {
-            $_SESSION['login_name'] = $row["name"];
-        }
-        
-        $_SESSION['login_user'] = $name;
-        header("Location:candidatedashboard.php");
+                $row = mysqli_fetch_array($result);
+                if (password_verify($pass, $row["password"]))
+                {
+                    $_SESSION['login_name'] = $row["name"];
+                    $_SESSION['login_user'] = $name;
+                    header("Location:candidatedashboard.php");
+                }
+                else{
+                    echo '<script>alert("Invalid Credentials")</script>';
+                }
+            }
     }
-        
     }
     mysqli_close($conn);
-    }
+    
 ?>
 
 <!DOCTYPE html>
