@@ -67,7 +67,8 @@
         
     <div class="content">
             <div class="container">
-              <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+              <br><br>
+              <canvas id="myChart" style="position: relative;width:100%;max-width:700px"></canvas>
             </div>
     </div>
     </body>
@@ -87,6 +88,7 @@
           },
           options: {
             legend: {display: false},
+            responsive : true,
             title: {
               display: true,
               text: "Applicants"
