@@ -30,6 +30,7 @@ function timer(timereq)
 }, 1000);
 }
 function startRecording() {
+	document.getElementById('nextbtn').disabled = false;
 	navigator.mediaDevices.getUserMedia(videoMediaConstraints)
 		.then((mediaStream) => {
 		const mediaRecorder = new MediaRecorder(mediaStream);
@@ -73,7 +74,7 @@ function upload(blob)
 		processData: false,
 		contentType: false
 	}).done(function(datum) {
-		console.log(datum);
+		//console.log(datum);
 		window.location.href="http://localhost:8000/jobqualifier/candidate/questions.php";
 	});
 	

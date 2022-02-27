@@ -136,7 +136,11 @@
 			the video tag
 		</video>
         
-        <center><span class="btn btn-success" id="status">The Recording will begin in</span><span class="btn btn-success" id="counter"></span></center>
+        <center><span class="btn btn-success" id="status">The Recording will begin in</span><span class="btn btn-success" id="counter"></span>
+        
+        <button value="Stop" onclick="stopRecording()" id="nextbtn" disabled="disabled" class="btn btn-danger">Stop</button>
+        <!-- <input type="button" value="Next"> -->
+        </center>
         
         
         <script src = "../assets/canrecord.js"></script>
