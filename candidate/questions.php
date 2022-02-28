@@ -65,7 +65,11 @@
   }
   
    $roleid = $_SESSION['roleid'];
-  $sql = "SELECT * from question where role_id = '".$roleid."' AND questionid NOT IN (SELECT questionid from answers WHERE cid = '".$cid."');";
+   if(isset($_SESSION['appid']))
+   {
+    $app = $_SESSION['appid'];
+   }
+  $sql = "SELECT * from question where role_id = '".$roleid."' AND questionid NOT IN (SELECT questionid from answers WHERE cid = '".$cid."' and application_id='".$app."');";
   $qid = "";
   $question = "";
   $qresult = mysqli_query($conn,$sql);
@@ -77,8 +81,8 @@
         }
     }
     else{
-        unset($_SESSION['appid']);
         header("Location:../candidatedashboard.php");
+        unset($_SESSION['appid']);
     }
   }
 
