@@ -9,10 +9,26 @@
   {
     die("Connection to DB failed with : ".mysqli_connect_error());
   }
+  $candidate = "SELECT id FROM candidate WHERE email = '".$_SESSION['login_user']."';";
+  $cresult = mysqli_query($conn,$candidate);
+  $cid = "";
+  if($cresult){
+    if ($cresult->num_rows > 0) {
+        while($row = $cresult->fetch_assoc()) {
+            $cid = $row['id'];
+            $_SESSION['cid'] = $cid;
+        }
+    }
+  }
   
   if(isset($_POST['role']) && !isset($_SESSION['appid']))
   {
+
     $_SESSION['roleid'] = $_POST['role'];
+    $check  = "select * from application  where application_id IN (SELECT application_id from answers where cid='$cid' and questionid IN (SELECT questionid from question where roleid='".$_SESSION['roleid']."'));";
+    $rcheck = mysqli_query($conn,$check);
+    if($rcheck->num_rows == 0)
+    {
     $sql = " select * from application;";
     $result=mysqli_query($conn,$sql);
     $id = "";
@@ -21,6 +37,7 @@
     if(mysqli_num_rows($result)==0)
     {
         $id='A0001';
+        $_SESSION['appid'] = $id;
     }
     else
     {
@@ -46,25 +63,18 @@
                 echo '<script>alert("Application failed!!")</script>';
             }
         }
-        else
-        {
-            header("Location:selectapplication.php");
-            echo '<script>alert("You already have applied for this post")</script>';
-        }
-  }
-  $candidate = "SELECT id FROM candidate WHERE email = '".$_SESSION['login_user']."';";
-  $cresult = mysqli_query($conn,$candidate);
-  $cid = "";
-  if($cresult){
-    if ($cresult->num_rows > 0) {
-        while($row = $cresult->fetch_assoc()) {
-            $cid = $row['id'];
-            $_SESSION['cid'] = $cid;
-        }
+        
     }
-  }
+    else
+        {
+            echo '<script>alert("You already have applied for this post")</script>';
+            header("Location:../candidatedashboard.php");
+        }
+}
+  
   
    $roleid = $_SESSION['roleid'];
+   $app="";
    if(isset($_SESSION['appid']))
    {
     $app = $_SESSION['appid'];
@@ -73,7 +83,7 @@
   $qid = "";
   $question = "";
   $qresult = mysqli_query($conn,$sql);
-  if($qresult){
+  if($qresult&&$app!=""){
     if ($qresult->num_rows > 0) {
         while($row = $qresult->fetch_assoc()) {
             $qid = $row['questionid'];
@@ -84,6 +94,9 @@
         header("Location:../candidatedashboard.php");
         unset($_SESSION['appid']);
     }
+  }
+  else{
+    header("Location:../candidatedashboard.php");
   }
 
 ?>
