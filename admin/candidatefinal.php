@@ -88,7 +88,7 @@
                         }
                     $selected = $_SESSION['finalrole'];
                                 
-                    $roles = "SELECT * FROM canfilter WHERE application_id is not null AND selrole='".$selected."';";
+                    $roles = "SELECT * FROM canfilter WHERE application_id is not null AND selrole='".$selected."' AND vidscore is not null and status IN ('Selected');";
                     $result = mysqli_query($conn,$roles);
                     if($result->num_rows>0)
                     {

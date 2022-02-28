@@ -80,23 +80,23 @@
         <div class="container">
             <form action="signup.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="cname">Name</label>
                         <input type="text" name="cname" id="cname" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="cpass">Password</label>
                         <input type="password" name="cpass" id="cpass" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-12">
                         <label for="address">Address</label>
                         <input type="textarea" name="address" id="address" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="gender">Gender</label>
                         <select class="form-control" name="gender" required>
                             <option selected>Select</option>
@@ -104,67 +104,67 @@
                             <option value="male">Male</option>
                         </select>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="dob">Date of Birth</label>
                         <input type="date" name="dob" id="dob-" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="contact">Contact Number</label>
                         <input type="tel" name="contact" id="contact" pattern="[0-9]{10}" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="pincode">Pincode</label>
                         <input type="tel" name="pincode" id="pincode" pattern="[0-9]{6}" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="per10">10th Percentage</label>
                         <input type="text" name="per10" id="per10" min="0.0" max="100.0" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="per12">12th Percentage</label>
                         <input type="text" name="per12" id="per12" min="0.0" max="100.0" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="ugcgpa">UG CGPA</label>
                         <input type="text" name="ugcgpa" id="ugcgpa" min="0.0" max="10.0" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3">
                         <label for="pgcgpa">PG CGPA</label>
                         <input type="text" name="pgcgpa" id="pgcgpa" min="0.0" max="10.0" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control" required/> 
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="work">Work Experience</label>
                         <input type="text" name="work" id="work" class="form-control" required/>
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="projects">Projects</label>
                         <input type="text" name="projects" id="projects" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <label for="intern">Internship</label>
                         <input type="text" name="intern" id="intern" class="form-control" required/> 
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-4">
                         <label for="interests">Area of interests</label>
                         <input type="text" name="interests" id="interests" class="form-control" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <label for="resume">Resume</label>
                         <input type="file" name="resume" id="resumes" class="form-control" accept=".pdf" required/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <label for="pic">Profile Picture</label>
                         <input type="file" name="pic" id="picture" class="form-control" accept=".jpg" required/>
                     </div>
