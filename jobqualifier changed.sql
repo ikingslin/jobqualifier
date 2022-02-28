@@ -206,6 +206,26 @@ ALTER TABLE `hires`
   ADD PRIMARY KEY (`AdminID`,`cid`,`application_id`),
   ADD KEY `hires_ibfk_2` (`cid`),
   ADD KEY `hires_ibfk_3` (`application_id`);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ques`
+--
+
+CREATE TABLE `ques` (
+  `questionid` varchar(5) NOT NULL,
+  `question` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ques`
+--
+
+INSERT INTO `ques` (`questionid`, `question`) VALUES
+('Q0001', 'Describe briefly about yourself'),
+('Q0002', 'Why would like to apply to this post?'),
+('Q0003', 'Tell us about your most recent project work'),
+('Q0004', 'Are you a good team leader? Why or why not?');
 
 --
 -- Indexes for table `question`
